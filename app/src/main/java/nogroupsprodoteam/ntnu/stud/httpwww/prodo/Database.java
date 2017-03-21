@@ -97,7 +97,7 @@ public class Database {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-       Integer lectureID = null;
+        Integer lectureID = null;
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
             PreparedStatement stmt = conn.prepareStatement("SELECT lectureID FROM lecture WHERE courseID = " + courseID.toString() +
@@ -237,7 +237,7 @@ public class Database {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 check = Integer.parseInt(rs.getString(1));
-                }
+            }
             if(check > 0){
                 exists = false;
             }
@@ -269,8 +269,8 @@ public class Database {
         }
     }
 
+    //send Questions to Database
     public static String sendQuestion(Integer topicID, String questionString) {
-
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -299,6 +299,7 @@ public class Database {
 
     }
 
+    //get Questions from Database
     public static ArrayList<String> getQuestions(Integer topicID) {
         try {
             Class.forName("com.mysql.jdbc.Driver");

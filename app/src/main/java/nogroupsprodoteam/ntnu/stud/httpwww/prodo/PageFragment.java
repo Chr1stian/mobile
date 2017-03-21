@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,10 @@ public class PageFragment extends Fragment {
     String questionString;
     TextView submitOK;
     ListView showQuestions;
+    ArrayAdapter<String> arrayAdapter;
+
+
+
 
 
 
@@ -43,9 +48,16 @@ public class PageFragment extends Fragment {
     }
 
 
+
+
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.page_fragment, container, false);
         textView = (TextView)view.findViewById(R.id.lbl_page);
@@ -54,6 +66,7 @@ public class PageFragment extends Fragment {
         String topic = bundle.getString("topic");
         topicID = bundle.getInt("topicID");
         textView.setText(topic);
+
 
         //currently unused and unreachable code for getting values from LectureActivity
         //use SendMessage in LectureActivity first
@@ -80,74 +93,27 @@ public class PageFragment extends Fragment {
         question.setHint("Ask a question");
         submitOK = (TextView)view.findViewById(R.id.lbl_submitOK);
         submitOK.setText(null);
-
-//creates ArrayList with Lectures on selected course from Database
-        ArrayList<String> ListViewArray  = Database.getQuestions(topicID);
-
         showQuestions = (ListView)view.findViewById(R.id.list_questions);
-        // Create an ArrayAdapter using the ArrayList
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_selectable_list_item, ListViewArray);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        showQuestions.setAdapter(arrayAdapter);
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_understanding);
 
 
-      /*  //function to run when lecture is selected from list
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object lecture = list.getItemAtPosition(position);
-                //gets lectureID from database based on selected lecture in list
-                Integer lectureID = Database.getLectureID(courseNumber, position + 1);
-                sendMessage(coursename, nickname, lecture.toString(), lectureID);
-            }
-        });*/
+
+        //Show list of questions already asked
+        showListOfQuestions();
 
         //Listening for changes in rating
         addListenerOnRatingBar();
 
-        //Listening for buttonClicks GJØR OM TIL EGEN FUNKSJON
-        submitQuestionButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               questionString = question.getText().toString();
-
-               submitOK.setText("Processing...");
-               //String length validation
-               if (isQuestionValid(questionString)){
-
-                   final String errorMessage = Database.sendQuestion(topicID,questionString);
-
-                    //delay stopping button from being clickable for 4 seconds while "processing"
-                   submitQuestionButton.setEnabled(false);
-                   new Handler().postDelayed(new Runnable() {
-                       @Override
-                       public void run() {
-
-                           submitOK.setText(errorMessage);
-                           question.setText(null);
-                           submitQuestionButton.setEnabled(true);
-                       }
-                   },1750);
-
-
-               }else{
-                   question.setText(null);
-               }
-
-
-           }
-        });
-
+        //Listening for buttonClicks
+        addOnClickListnerToSubmitButton();
 
         return view;
     }
 
     private void addListenerOnRatingBar() {
+
+
         //listening for changes in rating
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_understanding);
-
-
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -158,10 +124,49 @@ public class PageFragment extends Fragment {
                 testShowRating.setText(errorMessage);
             }
         });
-
     }
 
+    private void addOnClickListnerToSubmitButton(){
+        submitQuestionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                questionString = question.getText().toString();
 
+                submitOK.setText("Processing...");
+                //String length validation
+                if (isQuestionValid(questionString)){
+
+                    final String errorMessage = Database.sendQuestion(topicID,questionString);
+
+                    //delay stopping button from being clickable for 4 seconds while "processing"
+                    submitQuestionButton.setEnabled(false);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            submitOK.setText(errorMessage);
+                            question.setText(null);
+                            submitQuestionButton.setEnabled(true);
+                            updateListOfQuestions();
+                        }
+                    },1750);
+                }else{
+                    question.setText(null);
+                }
+            }
+        });
+    }
+
+    private void showListOfQuestions(){
+        //creates ArrayList with Lectures on selected course from Database
+        ArrayList<String> ListViewArray  = Database.getQuestions(topicID);
+
+        // Create an ArrayAdapter using the ArrayList
+        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_selectable_list_item, ListViewArray);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        showQuestions.setAdapter(arrayAdapter);
+    }
 
     private boolean isQuestionValid(String questionString){
         //validates that the string is longer than 2 characters. and displays invalid questions statment if false.
@@ -176,12 +181,16 @@ public class PageFragment extends Fragment {
             /*"Invalid question, try again."*/
             submitOK.setText("Question not submitted...");
             return false;
-
         }
     }
 
+    private void updateListOfQuestions(){
+        //update questions list
+        ArrayList<String> ListViewArrayUpdated  = Database.getQuestions(topicID);
+        arrayAdapter.clear();
+        arrayAdapter.addAll(ListViewArrayUpdated);
 
-
+    }
 
 }
 
@@ -201,4 +210,42 @@ public class PageFragment extends Fragment {
         	System.out.println(e);
         }
     	return -1;
-    }   */
+    }
+    //Anna eksemplkode for detecting top and bottom
+      listview.setOnScrollListener(new OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            // TODO Auto-generated method stub
+        }
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            if (firstVisibleItem == 0) {
+                // check if we reached the top or bottom of the list
+                View v = listview.getChildAt(0);
+                int offset = (v == null) ? 0 : v.getTop();
+                if (offset == 0) {
+                    // reached the top:
+                    return;
+                }
+            } else if (totalItemCount - visibleItemCount == firstVisibleItem){
+                View v =  listview.getChildAt(totalItemCount-1);
+                int offset = (v == null) ? 0 : v.getTop();
+                if (offset == 0) {
+                    // reached the top:
+                    return;
+                }
+            }
+        }
+    });
+    */
+
+   /*  //function to run when lecture is selected from list
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object lecture = list.getItemAtPosition(position);
+                //gets lectureID from database based on selected lecture in list
+                Integer lectureID = Database.getLectureID(courseNumber, position + 1);
+                sendMessage(coursename, nickname, lecture.toString(), lectureID);
+            }
+        });*/
