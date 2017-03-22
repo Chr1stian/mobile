@@ -15,7 +15,11 @@ public class Database {
     private static String mysqlUser = "sql11164632";
     private static String mysqlPass = "JKb6SqBp59";
 
-
+    public Database (String adr, String user, String password){
+        this.mysqlAddr = adr;
+        this.mysqlUser = user;
+        this.mysqlPass = password;
+    }
 
     public static String test(){
         try {
