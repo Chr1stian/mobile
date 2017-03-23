@@ -1,6 +1,8 @@
 language: android
 jdk: oraclejdk8
 
+before_install: cd App
+
 android:
   components:
   - build-tools-25.0.2
