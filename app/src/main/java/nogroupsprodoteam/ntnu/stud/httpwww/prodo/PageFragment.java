@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,8 +16,12 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -40,7 +45,7 @@ public class PageFragment extends Fragment {
 
 
 
-
+    final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
 
 
     public PageFragment() {
@@ -78,6 +83,8 @@ public class PageFragment extends Fragment {
         Integer lectureID = extras.getInt("LectureID");
         Integer numberOfLectures = extras.getInt("NumberOfLectures");
 
+        //hide keyboard?
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 
         testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
@@ -106,6 +113,29 @@ public class PageFragment extends Fragment {
 
         //Listening for buttonClicks
         addOnClickListnerToSubmitButton();
+
+
+        ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
+                Executors.newScheduledThreadPool(5);
+
+
+
+        Runnable periodicalUpdate = new Runnable(){
+            @Override
+            public void run() {
+                try{
+
+                    //Thread.sleep(10 * 1000);
+                    updateListOfQuestions();
+
+                }catch(Exception e){
+
+                }
+            }
+        };
+        ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 30, 30, TimeUnit.SECONDS);
+
+
 
         return view;
     }
