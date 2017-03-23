@@ -1,7 +1,7 @@
 language: android
 jdk: oraclejdk8
 
-before_install: cd App
+before_install: cd app
 
 android:
   components:
