@@ -26,6 +26,10 @@ android {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0' //version required
+}
+
 jacoco {
     toolVersion = '0.7.9'
 }
