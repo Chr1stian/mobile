@@ -3,6 +3,24 @@
 
     <item
         is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/eab74725ec8189b460e123e30a239f2021dd715c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_48f177b60c698a6c21dbc4abd3020b0e8958d84b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/37fc817d45317cbf80cd93abb55683357b92e2cc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_94ce906b9c389fab11c982b0680371cafb753e51.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/jacoco/jacocoagent.jar"
         jumboMode="false"
         optimize="true"
@@ -12,21 +30,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.1_770a509969aa01ef5cbb4981fd842494e979d414.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support.test/exposed-instrumentation-api-publish/0.5/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/98934c6bbbee8c51b7012253db2f9ebeb1864c28/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-exposed-instrumentation-api-publish-0.5_0be9a385e14811bebfa92a5ddd453d0b7da57453.jar" />
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_2b66b40dfb190d44d45e9b622294495f2ce7b479.jar" />
     </item>
     <item
         is-multidex="false"
@@ -39,15 +48,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.1_73ac0b67fd53c14428f50f923a362db283be430a.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
         jumboMode="false"
         optimize="true"
@@ -57,30 +57,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/a1c43051a49cb4851200555cd61f1f25c924ecbf/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.1_a685e0aeb12869c57302e30c193883f9ae2ba094.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.1.1_77980daf17f823f82752fcb1928620ff1ae04b01.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.1_45535dda1e2c9e955dc83c81c446863b6705c967.jar" />
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_7a519146d46a2c01bf134d244078154dda70acd1.jar" />
     </item>
     <item
         is-multidex="false"
@@ -93,39 +75,21 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/ec84c0491ee0071140ff7727486df97dceaa565f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_4a5c1ab195f6003148d400f73e7931be4844d85a.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.3_42fecbf749206e95c5bf91ef636bfe4417b8d9e4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support.test/rules/0.5/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-rules-0.5_7d636d491ade4f5e2ea6bb8aea159b2ea2d39411.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.1_2772e55be4b6657952ca8e191e93b999592adf63.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.1_ac9e3f5930ffdbe1d87ccec416b09fe87b7c9072.jar" />
     </item>
     <item
         is-multidex="false"
@@ -138,57 +102,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/dab08802a1b5e5adf99a29c1df453d081dbb105b/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.1_5fd8ff7d8873cea4588d72aa779330a2a2bc82fd.jar" />
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_825ac3864409cf1f28f1ca212f7025d13f5ea2f6.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/40c8ae925a4936fdc25a096c3b78041499a92150/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.1_78f192af61c70df7111a16846c33c9c3bf6c463d.jar" />
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_6f9d78ece0523e0f9bc001d52e09bbeab6e381ba.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/12a71f92f875a51cd6f62a01224a4f73842420c2/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test-runner-0.5_131b061fa138b60d2295353d2a95390552291e0e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a890ee8445927649d9ed50f625a315d8758688be">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.2_104a570bd9cfa4e3685295e9b6b062920ade47af.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.1.1_acfe2a8ab7a122a2602a8746fdda679c27e2614a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/Christian/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.1_4de88d77743c2d6e360e38db9802209800a99991.jar" />
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_db4da49f25dd70929ca427b45a1733c528da8983.jar" />
     </item>
     <item
         is-multidex="false"
@@ -210,12 +147,57 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/67f6a145dbd089666c2086f39b515c00a4ea7bc7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_71c477d9d55bb05c866a266cbe27d9d0b3e64681.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="6975da39a7040257bd51d21a231b76c915872d38">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1_403a5ed8d3d543e889759087c98bc1aadd6cac6b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/6fe11f63448dfc83d457448b5c6fa6760750b2ad/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_e24389eac9229c1c27d54fd9f010e5040b8eb6b5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/d155aea16709b22a8bc443021b9afb85d302d0fb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_964f7f154963d63eb47f16fd733ed8ba1464323e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/b0c9a367ed2e485a66c26f142fd4135d171e8d10/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_84c5e05db234c05f37f1c3939d328b558713a6cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/81606c7166fcfd070a75cfa6febbae69f0d54423/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_19cf387524f87ae17f4f16f0f9c664fe1c31d371.jar" />
     </item>
     <item
         is-multidex="false"
@@ -228,30 +210,48 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/8894b96b1cf9da8a108aab851a105a58202a838e/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.1_6c20acdbdb8171053cd6d6a588066d4a342f52a3.jar" />
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_198d8129d541d145780ab7144a0a93a893f7fab8.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-core/2.2.2/jars/classes.jar"
+        jar="/Users/Christian/.android/build-cache/fa1d912e470efaa37991b13c20f01e5ae4a89d9a/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/com.android.support.test.espresso-espresso-core-2.2.2_11fb3be5dcdf4dd2b092d670feffd362ab91a204.jar" />
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_5b37ab30f3ceb23df34e650aac61fa35100d62ca.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jar="/Users/Christian/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.1.1_313b443fedfbe45b9113a8a5576de163c33fc90e.jar" />
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.0_3a841f838490d5204a30c3fb2668e46cb99d744c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/51455a851d61ce6490ce3f7d381155b8842cb613/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_d675d918dda59fdf872e8a5fe42da3163f49eddb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/8017f85e5f897158679e570f860ad198d658fcac/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_7c034df23df7fca6f17e65c5d632845f5d30114f.jar" />
     </item>
 
 </items>
