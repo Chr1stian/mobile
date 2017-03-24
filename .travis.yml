@@ -12,6 +12,9 @@ android:
   - extra-google-m2repository
   - extra-android-m2repository
   
+  - sys-img-armeabi-v7a-android-25
+  - sys-img-armeabi-v7a-android-17
+  
   # Emulator Management: Create, Start and Wait
 before_script:
   - echo no | android create avd --force -n test -t android-25 --abi armeabi-v7a
