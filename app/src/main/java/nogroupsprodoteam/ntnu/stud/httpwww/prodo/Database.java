@@ -245,10 +245,10 @@ public class Database {
                 check = Integer.parseInt(rs.getString(1));
             }
             if(check > 0){
-                exists = true;
+                exists = false;
             }
             else{
-                exists = false;
+                exists = true;
             }
             conn.close();
             return exists;
@@ -315,7 +315,7 @@ public class Database {
         ArrayList<String> questions = new ArrayList<String>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE topicID = " + topicID.toString() +" ORDER BY rating");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE topicID = " + topicID.toString() +" ORDER BY rating DESC");
 //SELECT `questionID`, `topicID`, `userID`, `question`, `answer`, `rating` FROM `question` WHERE 1
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
