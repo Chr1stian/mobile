@@ -245,10 +245,10 @@ public class Database {
                 check = Integer.parseInt(rs.getString(1));
             }
             if(check > 0){
-                exists = true;
+                exists = false;
             }
             else{
-                exists = false;
+                exists = true;
             }
             conn.close();
             return exists;
@@ -315,11 +315,12 @@ public class Database {
         ArrayList<String> questions = new ArrayList<String>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE topicID = " + topicID.toString());
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE topicID = " + topicID.toString() +" ORDER BY rating DESC");
 //SELECT `questionID`, `topicID`, `userID`, `question`, `answer`, `rating` FROM `question` WHERE 1
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                questions.add(rs.getString(4) + "   Answer: " + rs.getString(5));
+                questions.add( rs.getString(1)+"Question: "+ rs.getString(4) + " Answer: " + rs.getString(5));
+
             }
             conn.close();
             return questions;
@@ -330,4 +331,39 @@ public class Database {
             return questions;
         }
     }
+
+    public static String setQuestionRating(Integer questionID){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Integer rating=null;
+        //Integer userID = 1;
+        String error ="!";
+
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("SELECT rating FROM question WHERE questionID =" +questionID);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()){
+                Integer Outrating = Integer.parseInt(rs.getString(1));
+                rating = Outrating +1;
+            }
+
+            PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO question(rating) VALUES ('" + rating.toString()+ "') WHERE questionID= "+ questionID);
+            stmt2.execute();
+//"INSERT INTO question(topicID,userID,question,answer,rating) VALUES ('" + topicID.toString() + "','" + userID.toString() + "','" + questionString +"','" + answer +"','" + rating.toString() + "')");
+            conn.close();
+
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            error = "Database error:" + e;
+            return error;
+        }
+        return error;
+    }
+
 }
