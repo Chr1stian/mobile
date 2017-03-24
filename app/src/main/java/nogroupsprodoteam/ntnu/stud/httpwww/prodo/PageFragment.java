@@ -1,14 +1,17 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,18 +56,14 @@ public class PageFragment extends Fragment {
     }
 
 
-
-
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.page_fragment, container, false);
+        setupUI(view.findViewById(R.id.rellay_parentforPageFragment));
+
         textView = (TextView)view.findViewById(R.id.lbl_page);
         Bundle bundle = getArguments();
         //gets values from adapter
@@ -220,6 +219,36 @@ public class PageFragment extends Fragment {
         arrayAdapter.clear();
         arrayAdapter.addAll(ListViewArrayUpdated);
 
+    }
+
+
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
 }
