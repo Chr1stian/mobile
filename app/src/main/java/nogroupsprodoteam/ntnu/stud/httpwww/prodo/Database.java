@@ -3,6 +3,8 @@ package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 /**
  * Created by Christian on 21.02.2017.
  */
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -232,7 +234,7 @@ public class Database {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        boolean exists = false;
+        boolean exists;
         Integer check = null;
 
         try{
@@ -243,10 +245,10 @@ public class Database {
                 check = Integer.parseInt(rs.getString(1));
             }
             if(check > 0){
-                exists = false;
+                exists = true;
             }
             else{
-                exists = true;
+                exists = false;
             }
             conn.close();
             return exists;
