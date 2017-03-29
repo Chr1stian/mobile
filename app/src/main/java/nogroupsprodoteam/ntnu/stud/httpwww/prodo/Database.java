@@ -45,55 +45,55 @@ public class Database {
         }
     }
     //returns ArrayList of courses from database
-    public static ArrayList<String> getCourses(){
+    public static ArrayList<Course> getCourses(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        ArrayList<String> course = new ArrayList<String>();
+        ArrayList<Course> courseList = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM course");
 
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                course.add(rs.getString(2) + " " + rs.getString(3));
+                ArrayList<String> course = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    course.add(rs.getString(i));
+                }courseList.add(new Course(course.get(0), course.get(1), course.get(2)));
             }
             conn.close();
-            return course;
+            return courseList;
         }
         catch(SQLException e){
-            System.out.println(e);
-            course.add("No courses");
-            return course;
+            return courseList;
         }
     }
     //returns ArrayList of lectures from database
-    public static ArrayList<String> getLectures(Integer ID){
+    public static ArrayList<Lecture> getLectures(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        ArrayList<String> lectures = new ArrayList<String>();
-        //Integer lectureID;
+        ArrayList<Lecture> lectureList = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM lecture WHERE courseID = " + ID.toString());
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM lecture");
 
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                lectures.add(rs.getString(3) + " " + rs.getString(4));
-                //lectureID = Integer.parseInt(rs.getString(1));
+                ArrayList<String> lecture = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    lecture.add(rs.getString(i));
+                }lectureList.add(new Lecture(lecture.get(0), lecture.get(1), lecture.get(2), lecture.get(3)));
             }
             conn.close();
-            return lectures;
+            return lectureList;
         }
         catch(SQLException e){
-            System.out.println(e);
-            lectures.add("No lectures");
-            return lectures;
+            return lectureList;
         }
     }
     //returns lectureID from database
@@ -148,32 +148,30 @@ public class Database {
         }
     }
     //returns topic from database
-    public static String getTopic(Integer number, Integer lectureID){
+    public static ArrayList<Topic> getTopics(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String topic = "";
-
+        ArrayList<Topic> topicList = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT name FROM topic WHERE number = " + number.toString() +
-                    " AND lectureID = " + lectureID);
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM topic");
+
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                topic = rs.getString(1);
+                ArrayList<String> topic = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    topic.add(rs.getString(i));
+                }topicList.add(new Topic(topic.get(0), topic.get(1), topic.get(2), topic.get(3)));
             }
             conn.close();
-            return topic;
+            return topicList;
         }
         catch(SQLException e){
-            System.out.println(e);
-            topic = "Database error:" + e;
-            return topic;
+            return topicList;
         }
-
-
     }
     //returns topicID from database
     public static Integer getTopicID(Integer number, Integer lectureID){

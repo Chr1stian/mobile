@@ -24,6 +24,9 @@ public class CourseActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         final String coursename = extras.getString("CourseName");
         final String nickname = extras.getString("NickName");
+        final ArrayList<Course> courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
+        final ArrayList<Lecture> lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
+        final ArrayList<Topic> topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
         final Integer courseNumber = extras.getInt("CourseNumber");
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
@@ -33,8 +36,8 @@ public class CourseActivity extends AppCompatActivity {
         lbl_name.setText(nickname);
 
         //creates ArrayList with Lectures on selected course from Database
-        ArrayList<String> ListViewArray = Database.getLectures(courseNumber);
-
+        //ArrayList<String> ListViewArray = Database.getLectures(courseNumber);
+        /*
         final ListView list = (ListView) findViewById(R.id.list_lecture);
         // Create an ArrayAdapter using the ArrayList
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, ListViewArray);
@@ -53,6 +56,7 @@ public class CourseActivity extends AppCompatActivity {
                 sendMessage(coursename, nickname, lecture.toString(), lectureID);
             }
         });
+        */
     }
     //send values to and opens LectureActivity
     public void sendMessage(String course, String nickname, String lecture, Integer lectureID) {
