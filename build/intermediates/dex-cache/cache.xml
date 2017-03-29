@@ -56,6 +56,15 @@
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3_7fe544ff84c42a84683ee7d1fc236a69a191ff8d.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1b30ec578d5aac3d5608b1899b92d9437ea1c383">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9a1481f288de81387525024ac4144e6b8c3cdc54/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/Christian/.android/build-cache/a1c43051a49cb4851200555cd61f1f25c924ecbf/output/jars/classes.jar"
         jumboMode="false"
@@ -99,6 +108,15 @@
         revision="25.0.2"
         sha1="3d8b493d12562fc904a947ea7b84394fe67e8a55">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/mysql-connector-java-3.0.17-ga-bin_91a3471758c1d219118fc0b58c0fa6347d1170d5.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Christian/Documents/PU/mobile/app/libs/mysql-connector-java-3.0.17-ga-bin.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d8b493d12562fc904a947ea7b84394fe67e8a55">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/mysql-connector-java-3.0.17-ga-bin_91a3471758c1d219118fc0b58c0fa6347d1170d5/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -234,6 +252,15 @@
         revision="25.0.2"
         sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.0_3a841f838490d5204a30c3fb2668e46cb99d744c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ab6a5ffef584d266067b93d8f1b0e22acbd2caf3/classes.dex" />
     </item>
     <item
         is-multidex="false"

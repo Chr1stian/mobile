@@ -12,16 +12,13 @@ hs_err_pid*
 /bin/
 
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-/.idea
 .idea
 .DS_Store
 .externalNativeBuild
 /captures
 .properties
 *.iml
-.gradle
+.gradle/
 /local.properties
 /build
 /.gradle

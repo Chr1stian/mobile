@@ -25,8 +25,8 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         //gets topicID and topic that corresponds to the current number of swipable fragment
         Integer topicID = Database.getTopicID(position+1, LectureActivity.getLectureID());
-        String topic = Database.getTopic(position+1, LectureActivity.getLectureID());
-        bundle.putString("topic",topic);
+        //String topic = Database.getTopic(position+1, LectureActivity.getLectureID());
+        //bundle.putString("topic",topic);
         bundle.putInt("topicID", topicID);
         //sends bundle/values to fragment for display
         fragment.setArguments(bundle);
