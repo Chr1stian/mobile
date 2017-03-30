@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/colorBackground"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/lectureCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TDT4140"
+        android:textSize="25dp"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:id="@+id/lectureName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test2"
+        android:textSize="25dp" />
+
+</LinearLayout>

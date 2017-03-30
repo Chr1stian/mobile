@@ -3,6 +3,8 @@ package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CourseActivity extends AppCompatActivity {
-
+    private RecyclerView recLectures;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,11 @@ public class CourseActivity extends AppCompatActivity {
 
         TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
         lbl_name.setText(nickname);
+
+
+        recLectures = (RecyclerView) findViewById(R.id.rec_list_lectures);
+        recLectures.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recLectures.setAdapter(new LectureAdapter(lectureArrayList, getLayoutInflater()));
 
         //creates ArrayList with Lectures on selected course from Database
         //ArrayList<String> ListViewArray = Database.getLectures(courseNumber);

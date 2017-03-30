@@ -25,6 +25,7 @@ public class SelectionActivity extends AppCompatActivity {
 
         final TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
         lbl_name.setText(nickname);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(new CourseAdapter(courseArrayList, getLayoutInflater()));

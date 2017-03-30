@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,7 +47,7 @@ public class PageFragment extends Fragment {
     TextView submitOK;
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
-
+    private RecyclerView rec_Questions;
 
 
     final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
@@ -99,43 +101,41 @@ public class PageFragment extends Fragment {
         question.setHint("Ask a question");
         submitOK = (TextView)view.findViewById(R.id.lbl_submitOK);
         submitOK.setText(null);
-        showQuestions = (ListView)view.findViewById(R.id.list_questions);
+        //showQuestions = (ListView)view.findViewById(R.id.list_questions);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_understanding);
 
+        ArrayList<Question> questionArrayList = Database.getQuestions(topicID);
 
 
         //Show list of questions already asked
-        showListOfQuestions();
+        //showListOfQuestions();
 
         //Listening for changes in rating
         addListenerOnRatingBar();
 
         //Listening for buttonClicks
         addOnClickListnerToSubmitButton();
+     //-------------------------------------------------------------------
+        rec_Questions = (RecyclerView) view.findViewById(R.id.rec_list_questions);
+        rec_Questions.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        rec_Questions.setAdapter(new QuestionAdapter(questionArrayList, getActivity().getLayoutInflater()));
 
+
+    //-------------------------------------------------------------------
 
         ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
                 Executors.newScheduledThreadPool(5);
-
-
-
         Runnable periodicalUpdate = new Runnable(){
             @Override
             public void run() {
                 try{
-
                     //Thread.sleep(10 * 1000);
-                    updateListOfQuestions();
-
+                    //updateListOfQuestions();
                 }catch(Exception e){
-
-                }
+                  }
             }
         };
         ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 30, 30, TimeUnit.SECONDS);
-
-
-
         return view;
     }
 
@@ -176,7 +176,7 @@ public class PageFragment extends Fragment {
                             submitOK.setText(errorMessage);
                             question.setText(null);
                             submitQuestionButton.setEnabled(true);
-                            updateListOfQuestions();
+                           // updateListOfQuestions();
                         }
                     },1750);
                 }else{
@@ -186,7 +186,7 @@ public class PageFragment extends Fragment {
         });
     }
 
-    private void showListOfQuestions(){
+   /* private void showListOfQuestions(){
         //creates ArrayList with Lectures on selected course from Database
         ArrayList<String> ListViewArray  = Database.getQuestions(topicID);
 
@@ -195,7 +195,7 @@ public class PageFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         showQuestions.setAdapter(arrayAdapter);
-    }
+    } */
 
     private boolean isQuestionValid(String questionString){
         //validates that the string is longer than 2 characters. and displays invalid questions statment if false.
@@ -213,14 +213,14 @@ public class PageFragment extends Fragment {
         }
     }
 
-    private void updateListOfQuestions(){
+  /*  private void updateListOfQuestions(){
         //update questions list
         ArrayList<String> ListViewArrayUpdated  = Database.getQuestions(topicID);
         arrayAdapter.clear();
         arrayAdapter.addAll(ListViewArrayUpdated);
 
     }
-
+*/
 
     public void setupUI(View view) {
 

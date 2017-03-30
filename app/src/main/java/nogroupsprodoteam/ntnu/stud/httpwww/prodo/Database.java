@@ -304,31 +304,34 @@ public class Database {
     }
 
     //get Questions from Database
-    public static ArrayList<String> getQuestions(Integer topicID) {
+    public static ArrayList<Question> getQuestions(Integer topicID) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        ArrayList<String> questions = new ArrayList<String>();
+        ArrayList<Question> questionList = new ArrayList<Question>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE topicID = " + topicID.toString() +" ORDER BY rating DESC");
-//SELECT `questionID`, `topicID`, `userID`, `question`, `answer`, `rating` FROM `question` WHERE 1
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                questions.add( rs.getString(1)+"Question: "+ rs.getString(4) + " Answer: " + rs.getString(5));
+                ArrayList<String> question = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    question.add(rs.getString(i));
+                }questionList.add(new Question(question.get(0), question.get(1), question.get(2),question.get(3), question.get(4), question.get(5)));
 
             }
             conn.close();
-            return questions;
+            return questionList;
         }
         catch(SQLException e){
             System.out.println(e);
-            questions.add("No questions yet.." + e);
-            return questions;
+
+            return questionList;
         }
     }
+
 
     public static String setQuestionRating(Integer questionID){
         try {
