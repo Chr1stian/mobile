@@ -1,9 +1,12 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +17,8 @@ import java.util.List;
 class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     private List<Course> courses;
     private final LayoutInflater layoutInflater;
+
+    static ClickListener clickListener;
 
     CourseAdapter(List<Course> courses, LayoutInflater layoutInflater) {
         this.courses = courses;
@@ -35,5 +40,13 @@ class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     @Override
     public int getItemCount() {
         return courses.size();
+    }
+
+    public void setClickListener(CourseAdapter.ClickListener clickListener){
+        this.clickListener = clickListener;
+    }
+
+    public interface ClickListener{
+        public void itemClicked(View view, int position);
     }
 }
