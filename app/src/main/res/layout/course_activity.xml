@@ -44,11 +44,19 @@
         android:layout_alignParentEnd="true"
         android:textSize="24sp" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_list_lectures"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView4"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+   <!--<ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/list_lecture" />
+        android:id="@+id/list_lecture" /> -->
 </RelativeLayout>

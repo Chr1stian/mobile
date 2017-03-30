@@ -3,6 +3,8 @@ package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CourseActivity extends AppCompatActivity {
+    private RecyclerView recLectures;
     private ArrayList<Course> courseArrayList;
     private ArrayList<Lecture> lectureArrayList;
     private ArrayList<Topic> topicArrayList;
@@ -35,7 +38,14 @@ public class CourseActivity extends AppCompatActivity {
         TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
 
 
+
+        recLectures = (RecyclerView) findViewById(R.id.rec_list_lectures);
+        recLectures.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recLectures.setAdapter(new LectureAdapter(lectureArrayList, getLayoutInflater()));
+
+
     }
+
     //send values to and opens LectureActivity
     public void sendMessage(String course, String nickname, String lecture, Integer lectureID) {
         Intent intent = new Intent(this, LectureActivity.class);

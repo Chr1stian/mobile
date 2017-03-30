@@ -113,16 +113,16 @@
         android:text="Questions:"
         android:textSize="20dp" />
 
-    <!--<android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_list_questions"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView3" />-->
+        android:layout_below="@+id/textView3" />
 
-     <ListView
+    <!-- <ListView
         android:id="@+id/list_questions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -131,7 +131,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3"
         android:choiceMode="singleChoice"
-        android:listSelector="@android:drawable/dialog_holo_light_frame" />
+        android:listSelector="@android:drawable/dialog_holo_light_frame" />-->
 
 
 

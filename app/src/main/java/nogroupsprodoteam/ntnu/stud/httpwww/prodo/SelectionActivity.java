@@ -32,6 +32,7 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
 
         final TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
         lbl_name.setText(nickname);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         CourseAdapter adapter = new CourseAdapter(courseArrayList, getLayoutInflater());
