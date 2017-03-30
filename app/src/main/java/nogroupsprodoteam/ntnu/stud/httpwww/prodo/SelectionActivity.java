@@ -5,12 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class SelectionActivity extends AppCompatActivity {
+public class SelectionActivity extends AppCompatActivity implements CourseAdapter.ClickListener{
     private RecyclerView recyclerView;
+    private ArrayList<Course> courseArrayList;
+    private ArrayList<Lecture> lectureArrayList;
+    private ArrayList<Topic> topicArrayList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,9 +25,9 @@ public class SelectionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        final ArrayList<Course> courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
-        final ArrayList<Lecture> lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
-        final ArrayList<Topic> topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
+        courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
+        lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
+        topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
         final String nickname = intent.getStringExtra("NickName");
 
         final TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
@@ -28,18 +35,27 @@ public class SelectionActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new CourseAdapter(courseArrayList, getLayoutInflater()));
+        CourseAdapter adapter = new CourseAdapter(courseArrayList, getLayoutInflater());
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+
     }
 
     //Sends values to and opens CourseActivity
-    public void sendMessage(String course, String nickname, Integer courseNumber) {
+    public void sendMessage(int position) {
         Intent intent = new Intent(this, CourseActivity.class);
         Bundle extras = new Bundle();
-
-        extras.putString("CourseName", course);
-        extras.putString("NickName", nickname);
-        extras.putInt("CourseNumber", courseNumber);
+        extras.putSerializable("CourseList", courseArrayList);
+        extras.putSerializable("LectureList", lectureArrayList);
+        extras.putSerializable("TopicList", topicArrayList);
+        extras.putInt("Position", position);
         intent.putExtras(extras);
         startActivity(intent);
+    }
+
+    @Override
+    public void itemClicked(View view, int position) {
+        sendMessage(position);
     }
 }

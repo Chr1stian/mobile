@@ -16,6 +16,10 @@ import java.util.ArrayList;
 
 public class CourseActivity extends AppCompatActivity {
     private RecyclerView recLectures;
+    private ArrayList<Course> courseArrayList;
+    private ArrayList<Lecture> lectureArrayList;
+    private ArrayList<Topic> topicArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,47 +28,24 @@ public class CourseActivity extends AppCompatActivity {
         //gets values from SelectionActivity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        final String coursename = extras.getString("CourseName");
-        final String nickname = extras.getString("NickName");
-        final ArrayList<Course> courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
-        final ArrayList<Lecture> lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
-        final ArrayList<Topic> topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
-        final Integer courseNumber = extras.getInt("CourseNumber");
+        courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
+        lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
+        topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
+        int position = extras.getInt("Position");
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
-        lbl_course.setText(coursename);
-
+        lbl_course.setText(courseArrayList.get(position).getCourseCode());
         TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
-        lbl_name.setText(nickname);
+
 
 
         recLectures = (RecyclerView) findViewById(R.id.rec_list_lectures);
         recLectures.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recLectures.setAdapter(new LectureAdapter(lectureArrayList, getLayoutInflater()));
 
-        //creates ArrayList with Lectures on selected course from Database
-        //ArrayList<String> ListViewArray = Database.getLectures(courseNumber);
-        /*
-        final ListView list = (ListView) findViewById(R.id.list_lecture);
-        // Create an ArrayAdapter using the ArrayList
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_selectable_list_item, ListViewArray);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        list.setAdapter(arrayAdapter);
 
-
-        //function to run when lecture is selected from list
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object lecture = list.getItemAtPosition(position);
-                //gets lectureID from database based on selected lecture in list
-                Integer lectureID = Database.getLectureID(courseNumber, position + 1);
-                sendMessage(coursename, nickname, lecture.toString(), lectureID);
-            }
-        });
-        */
     }
+
     //send values to and opens LectureActivity
     public void sendMessage(String course, String nickname, String lecture, Integer lectureID) {
         Intent intent = new Intent(this, LectureActivity.class);
