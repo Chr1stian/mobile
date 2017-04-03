@@ -56,6 +56,7 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
 
     @Override
     public void itemClicked(View view, int position) {
+        Toast.makeText(getApplicationContext(), "Du har trykket på pos: " + position, Toast.LENGTH_SHORT).show();
         sendMessage(position);
     }
 }
