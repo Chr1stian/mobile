@@ -16,6 +16,8 @@ class LectureAdapter extends RecyclerView.Adapter<LectureViewHolder> {
     private List<Lecture> lectures;
     private final LayoutInflater layoutInflater;
 
+    static ClickListener clickListener;
+
     public LectureAdapter(ArrayList<Lecture> lectures, LayoutInflater layoutInflater) {
         this.lectures = lectures;
         this.layoutInflater = layoutInflater;
@@ -37,5 +39,13 @@ class LectureAdapter extends RecyclerView.Adapter<LectureViewHolder> {
     @Override
     public int getItemCount() {
         return lectures.size();
+    }
+
+    public void setClickListener(LectureAdapter.ClickListener clickListener){
+        this.clickListener = clickListener;
+    }
+
+    public interface ClickListener{
+        public void itemClicked(View view, int position);
     }
 }
