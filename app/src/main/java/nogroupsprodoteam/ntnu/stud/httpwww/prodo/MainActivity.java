@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<Course> courseArrayList = Database.getCourses();
         final ArrayList<Lecture> lectureArrayList = Database.getLectures();
         final ArrayList<Topic> topicArrayList = Database.getTopics();
+        final ArrayList<Question> questionArrayList = Database.getAllQuestions();
 
         Button btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 if(Database.checkNickname(txt_name.getText().toString())){
                     //inserts it if not taken and goes to next view
                     Database.registerNickname(txt_name.getText().toString());
-                    sendMessage(courseArrayList, lectureArrayList, topicArrayList);
+                    sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
                 }
                 else{
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //opens new activity and passes values
-    public void sendMessage(ArrayList<Course> courseArrayList, ArrayList<Lecture> lectureArrayList, ArrayList<Topic> topicArrayList) {
+    public void sendMessage(ArrayList<Course> courseArrayList, ArrayList<Lecture> lectureArrayList, ArrayList<Topic> topicArrayList, ArrayList<Question> questionArrayList) {
         Intent intent = new Intent(this, SelectionActivity.class);
         EditText editText = (EditText) findViewById(R.id.txt_name);
         String nickname = editText.getText().toString();
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         extras.putSerializable("CourseList", courseArrayList);
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
+        extras.putSerializable("QuestionList", questionArrayList);
         intent.putExtras(extras);
         startActivity(intent);
     }

@@ -11,14 +11,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity implements LectureAdapter.ClickListener{
     private RecyclerView recLectures;
     private ArrayList<Course> courseArrayList;
     private ArrayList<Lecture> lectureArrayList;
     private ArrayList<Topic> topicArrayList;
+    private ArrayList<Question> questionArrayList;
+    private int selectedCourseID;
+    private List<Lecture> lecturesFromSelectedCourse = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,31 +36,44 @@ public class CourseActivity extends AppCompatActivity {
         courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
-        int position = extras.getInt("Position");
+        questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
+        selectedCourseID = extras.getInt("SelectedCourseID");
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
-        lbl_course.setText(courseArrayList.get(position).getCourseCode());
+        lbl_course.setText(courseArrayList.get(selectedCourseID).getCourseCode());
         TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
+        lbl_name.setText(courseArrayList.get(selectedCourseID).getCourseName());
 
 
-
+        for( Lecture lecture : lectureArrayList) {
+            if (lecture.getCourseID().equals(Integer.toString(selectedCourseID))) {
+                lecturesFromSelectedCourse.add(lecture);
+            }
+        }
         recLectures = (RecyclerView) findViewById(R.id.rec_list_lectures);
         recLectures.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recLectures.setAdapter(new LectureAdapter(lectureArrayList, getLayoutInflater()));
-
-
+        LectureAdapter adapter = new LectureAdapter((ArrayList<Lecture>) lecturesFromSelectedCourse, getLayoutInflater());
+        adapter.setClickListener(this);
+        recLectures.setAdapter(adapter);
     }
 
     //send values to and opens LectureActivity
-    public void sendMessage(String course, String nickname, String lecture, Integer lectureID) {
+    public void sendMessage(int position) {
+        int selectedLectureID = Integer.parseInt(lecturesFromSelectedCourse.get(position).getLectureID());
         Intent intent = new Intent(this, LectureActivity.class);
         Bundle extras = new Bundle();
-
-        extras.putString("CourseName", course);
-        extras.putString("NickName", nickname);
-        extras.putString("LectureName", lecture);
-        extras.putInt("LectureID", lectureID);
+        extras.putSerializable("CourseList", courseArrayList);
+        extras.putSerializable("LectureList", lectureArrayList);
+        extras.putSerializable("TopicList", topicArrayList);
+        extras.putSerializable("QuestionList", questionArrayList);
+        extras.putInt("SelectedCourseID", selectedCourseID);
+        extras.putInt("SelectedLectureID", selectedLectureID);
         intent.putExtras(extras);
         startActivity(intent);
+    }
+
+    @Override
+    public void itemClicked(View view, int position) {
+        sendMessage(position);
     }
 }
