@@ -14,8 +14,10 @@ public class LectureActivity extends FragmentActivity {
     private ArrayList<Course> courseArrayList;
     private ArrayList<Lecture> lectureArrayList;
     private ArrayList<Topic> topicArrayList;
+    private ArrayList<Lecture> lecturesFromSelectedCourseArrayList;
     private static ArrayList<Question> questionArrayList;
     private int selectedCourseID;
+    private Lecture selectedLecture;
     private static int selectedLectureID;
     private static List<Topic> topicsFromSelectedLecture = new ArrayList<>();
     static Integer numberOfTopics;
@@ -49,15 +51,15 @@ public class LectureActivity extends FragmentActivity {
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
         questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
+        lecturesFromSelectedCourseArrayList = (ArrayList<Lecture>) extras.getSerializable("lecturesFromSelectedCourseList");
+        selectedLecture = (Lecture) extras.getSerializable("SelectedLecture");
         selectedCourseID = extras.getInt("SelectedCourseID");
         selectedLectureID = extras.getInt("SelectedLectureID");
 
-        TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         TextView lbl_lecture = (TextView) findViewById(R.id.lbl_lecture);
-        lbl_name.setText("DittNick");
-        lbl_course.setText("CourseID: " + selectedCourseID);
-        lbl_lecture.setText("LectureID: " + selectedLectureID);
+        lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " +(courseArrayList.get(selectedCourseID - 1).getCourseName()));
+        lbl_lecture.setText(selectedLecture.getLectureName());
 
         topicsFromSelectedLecture.clear();
         for( Topic topic : topicArrayList) {

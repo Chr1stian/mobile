@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //checks if nickname is taken
-                if(Database.checkNickname(txt_name.getText().toString())){
+                /*if(Database.checkNickname(txt_name.getText().toString())){
                     //inserts it if not taken and goes to next view
                     Database.registerNickname(txt_name.getText().toString());
                     sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
                             });
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                }
+                }*/
+                sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
             }
         });
 
