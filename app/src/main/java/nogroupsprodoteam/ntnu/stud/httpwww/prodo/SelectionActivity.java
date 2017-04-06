@@ -32,9 +32,6 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
         final String nickname = intent.getStringExtra("NickName");
 
-        final TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
-        lbl_name.setText(nickname);
-
         recCourses = (RecyclerView) findViewById(R.id.recycler_view);
         recCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         CourseAdapter adapter = new CourseAdapter(courseArrayList, getLayoutInflater());
