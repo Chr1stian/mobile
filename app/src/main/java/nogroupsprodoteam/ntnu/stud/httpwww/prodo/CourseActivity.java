@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +41,8 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
         selectedCourseID = extras.getInt("SelectedCourseID");
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
-        lbl_course.setText(courseArrayList.get(selectedCourseID).getCourseCode());
-        TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
-        lbl_name.setText(courseArrayList.get(selectedCourseID).getCourseName());
+        lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " + courseArrayList.get(selectedCourseID - 1).getCourseName());
+
 
 
         for( Lecture lecture : lectureArrayList) {
@@ -60,12 +60,15 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
     //send values to and opens LectureActivity
     public void sendMessage(int position) {
         int selectedLectureID = Integer.parseInt(lecturesFromSelectedCourse.get(position).getLectureID());
+        Lecture selectedLecture = lecturesFromSelectedCourse.get(position);
         Intent intent = new Intent(this, LectureActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("CourseList", courseArrayList);
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
         extras.putSerializable("QuestionList", questionArrayList);
+        extras.putSerializable("LecturesFromSelectedCourseList", (Serializable) lecturesFromSelectedCourse);
+        extras.putSerializable("SelectedLecture", selectedLecture);
         extras.putInt("SelectedCourseID", selectedCourseID);
         extras.putInt("SelectedLectureID", selectedLectureID);
         intent.putExtras(extras);
