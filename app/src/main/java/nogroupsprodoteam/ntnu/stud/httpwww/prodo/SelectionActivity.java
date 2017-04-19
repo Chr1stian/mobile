@@ -12,10 +12,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class SelectionActivity extends AppCompatActivity implements CourseAdapter.ClickListener{
-    private RecyclerView recyclerView;
+    private RecyclerView recCourses;
     private ArrayList<Course> courseArrayList;
     private ArrayList<Lecture> lectureArrayList;
     private ArrayList<Topic> topicArrayList;
+    private ArrayList<Question> questionArrayList;
 
 
     @Override
@@ -28,35 +29,34 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
+        questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
         final String nickname = intent.getStringExtra("NickName");
 
-        final TextView lbl_name = (TextView) findViewById(R.id.lbl_name);
-        lbl_name.setText(nickname);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recCourses = (RecyclerView) findViewById(R.id.recycler_view);
+        recCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         CourseAdapter adapter = new CourseAdapter(courseArrayList, getLayoutInflater());
         adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        recCourses.setAdapter(adapter);
 
 
     }
 
     //Sends values to and opens CourseActivity
     public void sendMessage(int position) {
+        int selectedCourseID = Integer.parseInt(courseArrayList.get(position).getCourseID());
         Intent intent = new Intent(this, CourseActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("CourseList", courseArrayList);
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
-        extras.putInt("Position", position);
+        extras.putSerializable("QuestionList", questionArrayList);
+        extras.putInt("SelectedCourseID", selectedCourseID);
         intent.putExtras(extras);
         startActivity(intent);
     }
 
     @Override
     public void itemClicked(View view, int position) {
-        Toast.makeText(getApplicationContext(), "Du har trykket på pos: " + position, Toast.LENGTH_SHORT).show();
         sendMessage(position);
     }
 }

@@ -33,9 +33,7 @@ import java.util.concurrent.TimeUnit;
  * A simple {@link Fragment} subclass.
  */
 public class PageFragment extends Fragment {
-    TextView textView;
-    TextView testShowRating;
-    TextView ratingDescription;
+    TextView textView, testShowRating, ratingDescription;
     String staus;
     RatingBar ratingBar;
     View view;
@@ -45,6 +43,8 @@ public class PageFragment extends Fragment {
     EditText question;
     String questionString;
     TextView submitOK;
+    ArrayList<Question> questionsAtTopicID;
+
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
     private RecyclerView rec_Questions;
@@ -68,9 +68,10 @@ public class PageFragment extends Fragment {
 
         textView = (TextView)view.findViewById(R.id.lbl_page);
         Bundle bundle = getArguments();
-        //gets values from adapter
+        //gets values from SwipeAdapter
         String topic = bundle.getString("topic");
         topicID = bundle.getInt("topicID");
+        questionsAtTopicID = (ArrayList<Question>) bundle.getSerializable("QuestionList");
         textView.setText(topic);
 
 
@@ -104,7 +105,6 @@ public class PageFragment extends Fragment {
         //showQuestions = (ListView)view.findViewById(R.id.list_questions);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_understanding);
 
-        ArrayList<Question> questionArrayList = Database.getQuestions(topicID);
 
 
         //Show list of questions already asked
@@ -118,7 +118,7 @@ public class PageFragment extends Fragment {
      //-------------------------------------------------------------------
         rec_Questions = (RecyclerView) view.findViewById(R.id.rec_list_questions);
         rec_Questions.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        rec_Questions.setAdapter(new QuestionAdapter(questionArrayList, getActivity().getLayoutInflater()));
+        rec_Questions.setAdapter(new QuestionAdapter(questionsAtTopicID, getActivity().getLayoutInflater()));
 
 
     //-------------------------------------------------------------------

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by Christian on 21.02.2017.
@@ -24,10 +27,27 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = new PageFragment();
         Bundle bundle = new Bundle();
         //gets topicID and topic that corresponds to the current number of swipable fragment
-        Integer topicID = Database.getTopicID(position+1, LectureActivity.getLectureID());
-        //String topic = Database.getTopic(position+1, LectureActivity.getLectureID());
-        //bundle.putString("topic",topic);
+        ArrayList<Topic> topicsFromSelectedLecture = LectureActivity.getTopicsFromSelectedLecture();
+        ArrayList<Question> questionArrayList = LectureActivity.getQuestionArrayList();
+
+        ArrayList<Topic> topicAtNumber = new ArrayList<>();
+        for( Topic topic : topicsFromSelectedLecture) {
+            if (topic.getTopicNumber().equals(Integer.toString(position+1))) {
+                topicAtNumber.add(topic);
+            }
+        }
+        Integer topicID = Integer.parseInt(topicAtNumber.get(0).getTopicID());
+
+        ArrayList<Question> questionsAtTopicID = new ArrayList<>();
+        for( Question question : questionArrayList) {
+            if (question.getTopicID().equals(Integer.toString(topicID))) {
+                questionsAtTopicID.add(question);
+            }
+        }
+        String topic = topicAtNumber.get(0).getTopicName();
+        bundle.putString("topic",topic);
         bundle.putInt("topicID", topicID);
+        bundle.putSerializable("QuestionList", questionsAtTopicID);
         //sends bundle/values to fragment for display
         fragment.setArguments(bundle);
         return fragment;

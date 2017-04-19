@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Course> courseArrayList;
     ArrayList<Lecture> lectureArrayList;
     ArrayList<Topic> topicArrayList;
+    ArrayList<Question> questionArrayList;
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
@@ -60,21 +61,6 @@ public class MainActivity extends AppCompatActivity {
         btn_proceed = (Button) findViewById(R.id.btn_staysameuser);
         lbl_proceed = (TextView) findViewById(R.id.lbl_proceed);
 
-        //Database connection for no user id
-        courseArrayList = Database.getCourses();
-        lectureArrayList = Database.getLectures();
-        topicArrayList = Database.getTopics();
-
-        //create shared preferences editor
-        sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        editor = sharedPref.edit();
-
-       /*
-        For testing purpose
-        editor.clear();
-        editor.commit();
-        */
-
         //createAlert
         createAlert();
 
@@ -87,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //opens new activity and passes values
-    public void sendMessage(ArrayList<Course> courseArrayList, ArrayList<Lecture> lectureArrayList, ArrayList<Topic> topicArrayList) {
+    public void sendMessage(ArrayList<Course> courseArrayList, ArrayList<Lecture> lectureArrayList, ArrayList<Topic> topicArrayList, ArrayList<Question> questionArrayList) {
         Intent intent = new Intent(this, SelectionActivity.class);
       //  EditText editText = (EditText) findViewById(R.id.txt_name);
 
@@ -98,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         extras.putSerializable("CourseList", courseArrayList);
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
+        extras.putSerializable("QuestionList", questionArrayList);
         intent.putExtras(extras);
         startActivity(intent);
     }

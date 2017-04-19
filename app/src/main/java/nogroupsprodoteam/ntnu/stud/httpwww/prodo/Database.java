@@ -407,4 +407,29 @@ public class Database {
         return error;
     }
 
+    public static ArrayList<Question> getAllQuestions() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Question> questionList = new ArrayList<>();
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question");
+
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                ArrayList<String> question = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    question.add(rs.getString(i));
+                }questionList.add(new Question(question.get(0), question.get(1), question.get(2), question.get(3), question.get(4), question.get(5)));
+            }
+            conn.close();
+            return questionList;
+        }
+        catch(SQLException e){
+            return questionList;
+        }
+    }
 }

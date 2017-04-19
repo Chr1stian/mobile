@@ -11,13 +11,15 @@ android:
   - android-25
   - extra-google-m2repository
   - extra-android-m2repository
-  - sys-img-armeabi-v7a-android-25
-  - sys-img-armeabi-v7a-android-17
-
 
 licenses:
     - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
+    
+notifications:
+  slack: prodoteam:nUA3S3kz6rM7RVhOw4WOmc9U
+  email: false
+ 
 
 script: ./gradlew build check
