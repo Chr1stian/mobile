@@ -62,20 +62,20 @@ public class MainActivity extends AppCompatActivity {
         lbl_proceed = (TextView) findViewById(R.id.lbl_proceed);
 
         //Database connection 	
- -        courseArrayList = Database.getCourses();		
- -        lectureArrayList = Database.getLectures();		
- -        topicArrayList = Database.getTopics();
+         courseArrayList = Database.getCourses();
+         lectureArrayList = Database.getLectures();
+         topicArrayList = Database.getTopics();
           questionArrayList = Database.getAllQuestions();
- -		
- -        //create shared preferences editor		
- -        sharedPref = this.getPreferences(Context.MODE_PRIVATE);		
- -        editor = sharedPref.edit();		
- -		
- -       /*		
- -        For testing purpose		
- -        editor.clear();		
- -        editor.commit();		
- -        */
+
+         //create shared preferences editor
+         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+         editor = sharedPref.edit();
+
+        /*
+         For testing purpose
+         editor.clear();
+         editor.commit();
+         */
         
         //createAlert
         createAlert();
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         btn_proceed.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 makeWelcomeScreenButtonsGONE();
-                sendMessage(courseArrayList, lectureArrayList, topicArrayList);
+                sendMessage(courseArrayList, lectureArrayList, topicArrayList,questionArrayList);
             }
         });
     }
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                     //Hide log in meu¨'
                     makeWelcomeScreenVISIBLE();
                     makeLogInMenuGONE();
-                    sendMessage(courseArrayList, lectureArrayList, topicArrayList);
+                    sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
                 } else {
                     alert11.show();
                 }
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Log.e("test","2 alert");
-                        sendMessage(courseArrayList, lectureArrayList, topicArrayList);
+                        sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
                     }
                 },1500);
 
