@@ -61,6 +61,22 @@ public class MainActivity extends AppCompatActivity {
         btn_proceed = (Button) findViewById(R.id.btn_staysameuser);
         lbl_proceed = (TextView) findViewById(R.id.lbl_proceed);
 
+        //Database connection 	
+ -        courseArrayList = Database.getCourses();		
+ -        lectureArrayList = Database.getLectures();		
+ -        topicArrayList = Database.getTopics();
+          questionArrayList = Database.getAllQuestions();
+ -		
+ -        //create shared preferences editor		
+ -        sharedPref = this.getPreferences(Context.MODE_PRIVATE);		
+ -        editor = sharedPref.edit();		
+ -		
+ -       /*		
+ -        For testing purpose		
+ -        editor.clear();		
+ -        editor.commit();		
+ -        */
+        
         //createAlert
         createAlert();
 
