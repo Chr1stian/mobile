@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +40,8 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         adapter.setClickListener(this);
         recCourses.setAdapter(adapter);
 
-
+        setTitle(nickname);
+        //getActionBar().
     }
 
     //Sends values to and opens CourseActivity
@@ -58,5 +61,21 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
     @Override
     public void itemClicked(View view, int position) {
         sendMessage(position);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mybutton) {
+            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
