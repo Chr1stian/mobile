@@ -3,6 +3,7 @@ package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 /**
  * Created by Christian on 21.02.2017.
  */
+import android.provider.UserDictionary;
 import android.util.Log;
 
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Database {
@@ -256,7 +258,9 @@ public class Database {
         }
     }
     //registers username to database
-    public static void registerNickname(String nickname){
+    public static Integer registerNickname(String nickname){
+        Integer userID = null;
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -264,13 +268,49 @@ public class Database {
         }
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user(name) VALUES ('" + nickname + "')");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user(name) VALUES ('" + nickname + "')", Statement.RETURN_GENERATED_KEYS);
             stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                userID = rs.getInt(1);
+            } else {
+                System.out.println("rs empty");
+            }
             conn.close();
-
         }
         catch(SQLException e){
         }
+        return userID;
+    }
+
+    //get userID from database
+    public static Integer getUserID(String userName){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Integer userID = null;
+        Log.e("db","1 " +userID);
+
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("SELECT userID FROM user WHERE name = '" + userName+"'");
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                userID = Integer.parseInt(rs.getString(1));
+            }
+            conn.close();
+            return userID;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            userID = null;
+            return userID;
+        }
+
+
     }
 
     //send Questions to Database

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -11,37 +12,101 @@
     tools:context="nogroupsprodoteam.ntnu.stud.httpwww.prodo.MainActivity">
 
     <TextView
-        android:text="Choose a nickname"
+        android:id="@+id/lbl_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="63dp"
         android:layout_marginStart="63dp"
         android:layout_marginTop="61dp"
-        android:id="@+id/lbl_name"
+        android:enabled="false"
+        android:text="Choose a nickname"
         android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <EditText
+        android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/lbl_name"
         android:layout_alignLeft="@+id/lbl_name"
         android:layout_alignStart="@+id/lbl_name"
+        android:layout_below="@+id/lbl_name"
         android:layout_marginTop="52dp"
-        android:id="@+id/txt_name"
-        android:hint="Name" />
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:visibility="gone" />
 
     <Button
-        android:text="Ok"
+        android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txt_name"
-        android:layout_toRightOf="@+id/txt_name"
         android:layout_toEndOf="@+id/txt_name"
-        android:id="@+id/btn_ok" />
+        android:layout_toRightOf="@+id/txt_name"
+        android:enabled="false"
+        android:text="Ok"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_welcomemsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="114dp"
+        android:text="Welcome back"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_welcomemsg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_proceed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="210dp"
+        android:text="Do you wish to proceed?"
+        android:textSize="25sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_changeuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="94dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:text="Change user"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_staysameuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_changeuser"
+        android:layout_alignBottom="@+id/btn_changeuser"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:text="Yes"
+        android:visibility="gone" />
+
 </RelativeLayout>
