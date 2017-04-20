@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
         extras.putSerializable("QuestionList", questionArrayList);
+        extras.putInt("UserID", userID);
         intent.putExtras(extras);
         startActivity(intent);
     }

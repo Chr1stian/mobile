@@ -19,7 +19,8 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
     private ArrayList<Lecture> lectureArrayList;
     private ArrayList<Topic> topicArrayList;
     private ArrayList<Question> questionArrayList;
-
+    private int userID;
+    private String nickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
         questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
-        final String nickname = intent.getStringExtra("NickName");
+        userID = extras.getInt("UserID");
+        nickname = extras.getString("NickName");
 
         recCourses = (RecyclerView) findViewById(R.id.recycler_view);
         recCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -41,7 +43,6 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         recCourses.setAdapter(adapter);
 
         setTitle(nickname);
-        //getActionBar().
     }
 
     //Sends values to and opens CourseActivity
@@ -53,29 +54,45 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         extras.putSerializable("LectureList", lectureArrayList);
         extras.putSerializable("TopicList", topicArrayList);
         extras.putSerializable("QuestionList", questionArrayList);
+        extras.putInt("UserID", userID);
+        extras.putString("NickName", nickname);
         extras.putInt("SelectedCourseID", selectedCourseID);
         intent.putExtras(extras);
         startActivity(intent);
     }
-
+    //Passes the clicked element/list item position
     @Override
     public void itemClicked(View view, int position) {
         sendMessage(position);
     }
+    //Creates icon in actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    // handle button activities
+    //Handles button/icon click activities
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.mybutton) {
-            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+            openUsersQuestions();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //opens activity displaying the users asked questions
+    public void openUsersQuestions(){
+        Intent intent = new Intent(this, QuestionActivity.class);
+        Bundle extras = new Bundle();
+        extras.putInt("UserID", userID);
+        extras.putString("NickName", nickname);
+        extras.putSerializable("CourseList", courseArrayList);
+        extras.putSerializable("LectureList", lectureArrayList);
+        extras.putSerializable("TopicList", topicArrayList);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

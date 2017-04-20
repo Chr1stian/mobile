@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nogroupsprodoteam.ntnu.stud.httpwww.prodo">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +19,8 @@
         </activity>
         <activity android:name=".SelectionActivity" />
         <activity android:name=".CourseActivity" />
-        <activity android:name=".LectureActivity"></activity>
+        <activity android:name=".LectureActivity" />
+        <activity android:name=".QuestionActivity"></activity>
     </application>
 
 </manifest>
-
