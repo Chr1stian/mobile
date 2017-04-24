@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,7 @@ import java.util.ArrayList;
  */
 
 public class SwipeAdapter extends FragmentStatePagerAdapter {
-
-
+    Button swipeleft;
 
 
     public SwipeAdapter(FragmentManager fm) {
@@ -29,6 +29,7 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         //gets topicID and topic that corresponds to the current number of swipable fragment
         ArrayList<Topic> topicsFromSelectedLecture = LectureActivity.getTopicsFromSelectedLecture();
         ArrayList<Question> questionArrayList = LectureActivity.getQuestionArrayList();
+
 
         ArrayList<Topic> topicAtNumber = new ArrayList<>();
         for( Topic topic : topicsFromSelectedLecture) {
@@ -45,8 +46,10 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
             }
         }
         String topic = topicAtNumber.get(0).getTopicName();
+        bundle.putInt("position", position);
         bundle.putString("topic",topic);
         bundle.putInt("topicID", topicID);
+        bundle.putInt("count", getCount());
         bundle.putSerializable("QuestionList", questionsAtTopicID);
         //sends bundle/values to fragment for display
         fragment.setArguments(bundle);

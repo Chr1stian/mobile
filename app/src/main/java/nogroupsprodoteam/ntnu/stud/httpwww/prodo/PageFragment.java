@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 
+
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -38,8 +43,8 @@ public class PageFragment extends Fragment {
     String staus;
     RatingBar ratingBar;
     View view;
-    Integer topicID;
-    Button submitQuestionButton;
+    Integer topicID, position, count;
+    Button submitQuestionButton, btn_swipeleft, btn_swiperight;
     TextView textQuestion;
     EditText question;
     String questionString;
@@ -66,12 +71,13 @@ public class PageFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.page_fragment, container, false);
         setupUI(view.findViewById(R.id.rellay_parentforPageFragment));
-
         textView = (TextView)view.findViewById(R.id.lbl_page);
         Bundle bundle = getArguments();
         //gets values from SwipeAdapter
         String topic = bundle.getString("topic");
         topicID = bundle.getInt("topicID");
+        position = bundle.getInt("position");
+        count = bundle.getInt("count");
         questionsAtTopicID = (ArrayList<Question>) bundle.getSerializable("QuestionList");
         textView.setText(topic);
 
@@ -89,6 +95,30 @@ public class PageFragment extends Fragment {
         //hide keyboard?
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        //hide or show appropriate buttons for changing fragment/swiping
+        btn_swipeleft = (Button) view.findViewById(R.id.btn_swipeleft);
+        btn_swiperight = (Button) view.findViewById(R.id.btn_swiperight);
+        if(position == 0){
+            btn_swipeleft.setVisibility(View.GONE);
+        }
+        if(position == count - 1){
+            btn_swiperight.setVisibility(View.GONE);
+        }
+
+        //change view/fragment when clicking on left/right buttons
+        btn_swiperight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LectureActivity)getActivity()).swiperight(position);
+            }
+        });
+
+        btn_swipeleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LectureActivity)getActivity()).swipeleft(position);
+            }
+        });
 
         testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
         testShowRating.setText("No rating yet..");
