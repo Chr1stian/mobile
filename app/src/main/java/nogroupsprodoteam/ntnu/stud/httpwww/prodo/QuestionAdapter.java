@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
  * Created by thea_ on 30.03.2017.
+ *
  */
 
 class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
@@ -31,7 +32,9 @@ class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
     public void onBindViewHolder(QuestionViewHolder holder, int position) {
         holder.questionTextView.setText(questions.get(position).getQuestion());
         holder.answerTextView.setText(questions.get(position).getAnswer());
-        holder.endorseButton.setText("test");
+        holder.scoreTextView.setText(questions.get(position).getRating());
+       // holder.endorseButtonUp.setText("test");
+       // holder.endorseButtonUp.setText("test");
     }
 
     @Override

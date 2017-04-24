@@ -1,28 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="5dp">
+
 
     <TextView
-        android:id="@+id/Question"
+        android:id="@+id/lbl_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="2dp"
+        android:layout_toLeftOf="@+id/lbl_score"
+        android:layout_toStartOf="@+id/lbl_score"
+        />
 
     <TextView
-        android:id="@+id/Answer"
+        android:id="@+id/lbl_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_below="@+id/lbl_question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="2dp"
+        android:layout_toLeftOf="@+id/lbl_score"
+        android:layout_toStartOf="@+id/lbl_score" />
 
-    <Button
-        android:id="@+id/btn_qr"
+    <TextView
+        android:id="@+id/lbl_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:text="Button" />
-</LinearLayout>
+        android:text="TextView"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imgbtn_up"
+        android:layout_toStartOf="@+id/imgbtn_up" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="2dp"
+        android:layout_toLeftOf="@+id/imgbtn_down"
+        android:layout_toStartOf="@+id/imgbtn_down"
+        android:minHeight="35dp"
+        android:minWidth="30dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/ic_thumb_up_black_17dp"
+        />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="2dp"
+        android:elevation="0dp"
+        android:minHeight="35dp"
+        android:minWidth="30dp"
+        android:padding="1dp"
+        app:srcCompat="@drawable/ic_thumb_down_black_17dp" />
+
+
+</RelativeLayout>
