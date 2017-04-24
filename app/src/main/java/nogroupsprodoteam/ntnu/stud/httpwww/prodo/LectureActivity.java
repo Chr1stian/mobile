@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +87,18 @@ public class LectureActivity extends AppCompatActivity {
         viewPager.setAdapter(swipeAdapter);
 
 
+
         setTitle(nickname);
     }
+    //switches fragment to the right
+    public void swiperight(int positon){
+        viewPager.setCurrentItem(positon + 1);
+    }
+/   //switches fragment to the left
+    public void swipeleft(int position){
+        viewPager.setCurrentItem(position - 1);
+    }
+
     //unused method to send values to fragment
     public void sendMessage(String course, String nickname, String lecturename, Integer lectureID, Integer numberOfLectures) {
         Intent intent = new Intent(this, PageFragment.class);
