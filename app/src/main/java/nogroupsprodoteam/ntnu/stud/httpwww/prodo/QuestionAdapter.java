@@ -34,7 +34,15 @@ class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
     @Override
     public void onBindViewHolder(QuestionViewHolder holder, int position) {
         holder.questionTextView.setText(questions.get(position).getQuestion());
-        holder.answerTextView.setText(questions.get(position).getAnswer());
+
+        String answer = questions.get(position).getAnswer();
+
+        if (answer == null) {
+            holder.answerTextView.setText("Not answered yet..");
+        } else {
+            holder.answerTextView.setText(answer);
+        }
+
         holder.scoreTextView.setText(questions.get(position).getRating());
         buttonListenerOnDownButton(holder,position);
         buttonListenerOnUpButton(holder,position);

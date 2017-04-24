@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    >
 
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_margin="2dp"
         android:layout_toLeftOf="@+id/lbl_score"
         android:layout_toStartOf="@+id/lbl_score"
+        android:textStyle="bold"
         />
 
     <TextView
