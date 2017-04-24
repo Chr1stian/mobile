@@ -39,12 +39,8 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         }
         Integer topicID = Integer.parseInt(topicAtNumber.get(0).getTopicID());
 
-        ArrayList<Question> questionsAtTopicID = new ArrayList<>();
-        for( Question question : questionArrayList) {
-            if (question.getTopicID().equals(Integer.toString(topicID))) {
-                questionsAtTopicID.add(question);
-            }
-        }
+        ArrayList<Question> questionsAtTopicID = getQuestionsAtTopic(questionArrayList,topicID);
+
         String topic = topicAtNumber.get(0).getTopicName();
         bundle.putInt("position", position);
         bundle.putString("topic",topic);
@@ -54,6 +50,20 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         //sends bundle/values to fragment for display
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+
+    public static ArrayList<Question> getQuestionsAtTopic(ArrayList<Question> questionArrayList,Integer topicID){
+        ArrayList<Question> questionsAtTopicID = new ArrayList<>();
+
+        for( Question question : questionArrayList) {
+            if (question.getTopicID().equals(Integer.toString(topicID))) {
+                questionsAtTopicID.add(question);
+            }
+        }
+
+        return questionsAtTopicID;
+
     }
 
     @Override

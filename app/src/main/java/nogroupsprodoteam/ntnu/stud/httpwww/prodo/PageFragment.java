@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,19 +51,17 @@ public class PageFragment extends Fragment {
     String questionString;
     TextView submitOK;
     ArrayList<Question> questionsAtTopicID;
-
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
     private RecyclerView rec_Questions;
-
+    QuestionAdapter rec_QPF_adapter;
+    LinearLayoutManager rec_QPF_manager;
 
     final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
-
 
     public PageFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +79,6 @@ public class PageFragment extends Fragment {
         count = bundle.getInt("count");
         questionsAtTopicID = (ArrayList<Question>) bundle.getSerializable("QuestionList");
         textView.setText(topic);
-
 
         //currently unused and unreachable code for getting values from LectureActivity
         //use SendMessage in LectureActivity first
@@ -122,10 +120,8 @@ public class PageFragment extends Fragment {
 
         testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
         testShowRating.setText("No rating yet..");
-
         ratingDescription = (TextView)view.findViewById(R.id.lbl_ratingDescription);
         ratingDescription.setText("How well do you understand the current topic?");
-
         textQuestion = (TextView)view.findViewById(R.id.lbl_askQuestion);
         textQuestion.setText("Do you have any questions?");
         submitQuestionButton = (Button)view.findViewById(R.id.btn_SubmitQuestion);
@@ -136,31 +132,23 @@ public class PageFragment extends Fragment {
         //showQuestions = (ListView)view.findViewById(R.id.list_questions);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_understanding);
 
-
-
-        //Show list of questions already asked
-        //showListOfQuestions();
-
         //Listening for changes in rating
         addListenerOnRatingBar();
 
         //Listening for buttonClicks
         addOnClickListnerToSubmitButton();
-     //-------------------------------------------------------------------
+
+        //Setting up the recycle view showing the list of questions
         rec_Questions = (RecyclerView) view.findViewById(R.id.rec_list_questions);
-        LinearLayoutManager test = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rec_Questions.setLayoutManager(test);
-        rec_Questions.setAdapter(new QuestionAdapter(questionsAtTopicID, getActivity().getLayoutInflater()));
-
+        rec_QPF_manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rec_Questions.setLayoutManager(rec_QPF_manager);
+        rec_QPF_adapter = new QuestionAdapter(questionsAtTopicID, getActivity().getLayoutInflater());
+        rec_Questions.setAdapter(rec_QPF_adapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rec_Questions.getContext(),
-                test.getOrientation());
-
-
+                rec_QPF_manager.getOrientation());
         rec_Questions.addItemDecoration(dividerItemDecoration);
 
-
-        //-------------------------------------------------------------------
-
+        //Periodical update?
         ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
                 Executors.newScheduledThreadPool(5);
         Runnable periodicalUpdate = new Runnable(){
@@ -170,7 +158,7 @@ public class PageFragment extends Fragment {
                     //Thread.sleep(10 * 1000);
                     //updateListOfQuestions();
                 }catch(Exception e){
-                  }
+                }
             }
         };
         ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 30, 30, TimeUnit.SECONDS);
@@ -178,15 +166,12 @@ public class PageFragment extends Fragment {
     }
 
     private void addListenerOnRatingBar() {
-
-
         //listening for changes in rating
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 //showing rating value in testtext display and sends rating to database
                 staus = Integer.toString(Math.round(rating));
-
                 String errorMessage = Database.setRating(topicID,Math.round(rating));
                 testShowRating.setText(errorMessage);
             }
@@ -198,25 +183,24 @@ public class PageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 questionString = question.getText().toString();
-
                 submitOK.setText("Processing...");
                 //String length validation
                 if (isQuestionValid(questionString)){
-
                     final String errorMessage = Database.sendQuestion(topicID,questionString,LectureActivity.getUserID());
-
                     //delay stopping button from being clickable for 4 seconds while "processing"
                     submitQuestionButton.setEnabled(false);
+
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
                             submitOK.setText(errorMessage);
                             question.setText(null);
                             submitQuestionButton.setEnabled(true);
-                           // updateListOfQuestions();
+                            questionsAtTopicID.clear();
+                            questionsAtTopicID.addAll(SwipeAdapter.getQuestionsAtTopic(Database.getAllQuestions(),topicID));
+                            rec_QPF_adapter.notifyDataSetChanged();
                         }
-                    },1750);
+                    },1000);
                 }else{
                     question.setText(null);
                 }
@@ -224,24 +208,12 @@ public class PageFragment extends Fragment {
         });
     }
 
-   /* private void showListOfQuestions(){
-        //creates ArrayList with Lectures on selected course from Database
-        ArrayList<String> ListViewArray  = Database.getQuestions(topicID);
-
-        // Create an ArrayAdapter using the ArrayList
-        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_selectable_list_item, ListViewArray);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        showQuestions.setAdapter(arrayAdapter);
-    } */
-
     private boolean isQuestionValid(String questionString){
         //validates that the string is longer than 2 characters. and displays invalid questions statment if false.
         int lengthOfString = questionString.length();
 
         if (lengthOfString>2){
             question.setHint("Ask a new question");
-
             return true;
         } else {
             question.setHint(""+lengthOfString);
@@ -251,17 +223,7 @@ public class PageFragment extends Fragment {
         }
     }
 
-  /*  private void updateListOfQuestions(){
-        //update questions list
-        ArrayList<String> ListViewArrayUpdated  = Database.getQuestions(topicID);
-        arrayAdapter.clear();
-        arrayAdapter.addAll(ListViewArrayUpdated);
-
-    }
-*/
-
     public void setupUI(View view) {
-
         // Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof EditText)) {
             view.setOnTouchListener(new View.OnTouchListener() {
@@ -291,23 +253,7 @@ public class PageFragment extends Fragment {
 
 }
 
-//For å hente ut autogenerert value
-/*  public static int insertResult() {
-    	try {
-    		Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-    		PreparedStatement stmt = conn.prepareStatement("insert into RESULTAT () values ()", Statement.RETURN_GENERATED_KEYS);
-        	stmt.executeUpdate();
-        	ResultSet rs = stmt.getGeneratedKeys();
-        	if (rs.next()) {
-        		return rs.getInt(1);
-        	} else {
-        		System.out.println("rs empty");
-        	}
-    	} catch(SQLException e) {
-        	System.out.println(e);
-        }
-    	return -1;
-    }
+/*
     //Anna eksemplkode for detecting top and bottom
       listview.setOnScrollListener(new OnScrollListener() {
         @Override
@@ -335,14 +281,3 @@ public class PageFragment extends Fragment {
         }
     });
     */
-
-   /*  //function to run when lecture is selected from list
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object lecture = list.getItemAtPosition(position);
-                //gets lectureID from database based on selected lecture in list
-                Integer lectureID = Database.getLectureID(courseNumber, position + 1);
-                sendMessage(coursename, nickname, lecture.toString(), lectureID);
-            }
-        });*/
