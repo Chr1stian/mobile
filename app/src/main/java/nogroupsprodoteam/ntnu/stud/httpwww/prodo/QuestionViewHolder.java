@@ -3,6 +3,7 @@ package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -12,12 +13,16 @@ import android.widget.TextView;
 class QuestionViewHolder extends RecyclerView.ViewHolder {
     public final TextView questionTextView;
     public final TextView answerTextView;
-    public final Button endorseButton;
+    public final TextView scoreTextView;
+    public final ImageButton endorseButtonUp;
+    public final ImageButton endorseButtonDown;
 
     public QuestionViewHolder(View itemView) {
         super(itemView);
-        this.questionTextView = (TextView) itemView.findViewById(R.id.Question);
-        this.answerTextView = (TextView) itemView.findViewById(R.id.Answer);
-        this.endorseButton = (Button) itemView.findViewById(R.id.btn_qr);
+        this.questionTextView = (TextView) itemView.findViewById(R.id.lbl_question);
+        this.answerTextView = (TextView) itemView.findViewById(R.id.lbl_answer);
+        this.scoreTextView = (TextView) itemView.findViewById(R.id.lbl_score);
+        this.endorseButtonDown = (ImageButton) itemView.findViewById(R.id.imgbtn_down);
+        this.endorseButtonUp = (ImageButton) itemView.findViewById(R.id.imgbtn_up);
     }
 }
