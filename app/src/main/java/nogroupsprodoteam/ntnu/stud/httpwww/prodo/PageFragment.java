@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -117,11 +118,18 @@ public class PageFragment extends Fragment {
         addOnClickListnerToSubmitButton();
      //-------------------------------------------------------------------
         rec_Questions = (RecyclerView) view.findViewById(R.id.rec_list_questions);
-        rec_Questions.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager test = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rec_Questions.setLayoutManager(test);
         rec_Questions.setAdapter(new QuestionAdapter(questionsAtTopicID, getActivity().getLayoutInflater()));
 
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rec_Questions.getContext(),
+                test.getOrientation());
 
-    //-------------------------------------------------------------------
+
+        rec_Questions.addItemDecoration(dividerItemDecoration);
+
+
+        //-------------------------------------------------------------------
 
         ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
                 Executors.newScheduledThreadPool(5);
