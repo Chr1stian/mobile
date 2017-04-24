@@ -26,7 +26,7 @@ public class LectureActivity extends AppCompatActivity {
     private static int selectedLectureID;
     private static List<Topic> topicsFromSelectedLecture = new ArrayList<>();
     static Integer numberOfTopics;
-    private int userID;
+    private static int userID;
     private String nickname;
 
     public static Integer getNumberOfTopics() {
@@ -44,6 +44,8 @@ public class LectureActivity extends AppCompatActivity {
     public static ArrayList<Question> getQuestionArrayList() {
         return questionArrayList;
     }
+
+    public static int getUserID(){ return userID;}
 
 
     @Override

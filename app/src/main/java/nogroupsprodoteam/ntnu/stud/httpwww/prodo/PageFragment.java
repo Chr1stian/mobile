@@ -165,7 +165,7 @@ public class PageFragment extends Fragment {
                 //String length validation
                 if (isQuestionValid(questionString)){
 
-                    final String errorMessage = Database.sendQuestion(topicID,questionString);
+                    final String errorMessage = Database.sendQuestion(topicID,questionString,LectureActivity.getUserID());
 
                     //delay stopping button from being clickable for 4 seconds while "processing"
                     submitQuestionButton.setEnabled(false);

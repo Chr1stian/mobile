@@ -316,7 +316,7 @@ public class Database {
     }
 
     //send Questions to Database
-    public static String sendQuestion(Integer topicID, String questionString) {
+    public static String sendQuestion(Integer topicID, String questionString, Integer userID) {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -324,14 +324,14 @@ public class Database {
             e.printStackTrace();
         }
 
-        Integer userID = 1;
-        String answer = "Not answered yet..";
+
+        String answer = null;
         String error ="*Question submitted*";
         Integer rating = 0;
 
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO question(topicID,userID,question,answer,rating) VALUES ('" + topicID.toString() + "','" + userID.toString() + "','" + questionString +"','" + answer +"','" + rating.toString() + "')");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO question(topicID,userID,question) VALUES ('" + topicID.toString() + "','" + userID.toString() + "','" + questionString +"')");
             //INSERT INTO `question`(`questionID`, `topicID`, `userID`, `question`, `answer`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5])
             stmt.execute();
             conn.close();
@@ -434,7 +434,7 @@ public class Database {
         ArrayList<Question> questionList = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question ORDER BY rating DESC");
 
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
@@ -461,8 +461,8 @@ public class Database {
         ArrayList<Question> questionList = new ArrayList<>();
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE userID =" + userID);
-
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE userID =" + userID +" ORDER BY questionID DESC");
+//SELECT *FROM  `question`ORDER BY  `question`.`questionID` DESC
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 ArrayList<String> question = new ArrayList<>();
@@ -474,7 +474,9 @@ public class Database {
             return questionList;
         }
         catch(SQLException e){
+            Log.e("db","ordering "+e);
             return questionList;
+
         }
     }
 
