@@ -2,58 +2,301 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/eab74725ec8189b460e123e30a239f2021dd715c/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="e119400c48d1bc39b63ef952ea5f44648d7f78e9">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d0b465aa7eff833eef64f305afc50dad289ea3c9\classes.dex" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_48f177b60c698a6c21dbc4abd3020b0e8958d84b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/37fc817d45317cbf80cd93abb55683357b92e2cc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_94ce906b9c389fab11c982b0680371cafb753e51.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/jacoco/jacocoagent.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fdca30f45b60c6ba724c26a9ce127975e26d4bcb">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/jacocoagent_456938e5c48bc48aa49c9e29f2b15c2258284ee4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/98934c6bbbee8c51b7012253db2f9ebeb1864c28/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_2b66b40dfb190d44d45e9b622294495f2ce7b479.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/junit-4.12_e20c9c5e3cb8adc8ed8ca358b38e20ebe94fd467.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-core-1.3_7fe544ff84c42a84683ee7d1fc236a69a191ff8d.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\libs\mysql-connector-java-3.0.17-ga-bin.jar"
+        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ab7c597db03ac04b1c50593c618316a714685bba">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9a1481f288de81387525024ac4144e6b8c3cdc54/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/a1c43051a49cb4851200555cd61f1f25c924ecbf/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_7a519146d46a2c01bf134d244078154dda70acd1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-library-1.3_f51feb98245dd53ed1605a414ae8d36ad18b19da.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/ec84c0491ee0071140ff7727486df97dceaa565f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_4a5c1ab195f6003148d400f73e7931be4844d85a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/hamcrest-integration-1.3_42fecbf749206e95c5bf91ef636bfe4417b8d9e4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/Documents/PU/mobile/app/libs/mysql-connector-java-3.0.17-ga-bin.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3d8b493d12562fc904a947ea7b84394fe67e8a55">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/mysql-connector-java-3.0.17-ga-bin_91a3471758c1d219118fc0b58c0fa6347d1170d5.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Christian/Documents/PU/mobile/app/libs/mysql-connector-java-3.0.17-ga-bin.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3d8b493d12562fc904a947ea7b84394fe67e8a55">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\transforms\dex\debug\folders\1000\2\mysql-connector-java-3.0.17-ga-bin_2ce3eeb47e1a85b05b0ec0b9b1f50ecdbd6164be\classes.dex" />
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/2/mysql-connector-java-3.0.17-ga-bin_91a3471758c1d219118fc0b58c0fa6347d1170d5/classes.dex" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\thea_\.android\build-cache\d6a5d07ef47dc217ae9417c849cbdb1fe823a019\output\jars\classes.jar"
+        jar="/Users/Christian/.android/build-cache/dab08802a1b5e5adf99a29c1df453d081dbb105b/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\pre-dexed\debug\classes_4c05bacf23c26696fbd29ba799f4445fa257f5f3.jar" />
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_825ac3864409cf1f28f1ca212f7025d13f5ea2f6.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\libs\mysql-connector-java-3.0.17-ga-bin.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3d8b493d12562fc904a947ea7b84394fe67e8a55">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\pre-dexed\debug\mysql-connector-java-3.0.17-ga-bin_2ce3eeb47e1a85b05b0ec0b9b1f50ecdbd6164be.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\thea_\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/Christian/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_3fcba62fa66b721830e98a13ea726cf7f2febfdf.jar" />
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_99e3ae70aa019c654502d079ef037d147230b749/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/40c8ae925a4936fdc25a096c3b78041499a92150/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_6f9d78ece0523e0f9bc001d52e09bbeab6e381ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/12a71f92f875a51cd6f62a01224a4f73842420c2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_db4da49f25dd70929ca427b45a1733c528da8983.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/javawriter-2.1.1_af590dc15d5e000f855786ab73c49f3359b3084e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/jsr305-2.0.1_bfcdf0515666d4ff7406418758c484845d4be8f9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/67f6a145dbd089666c2086f39b515c00a4ea7bc7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_71c477d9d55bb05c866a266cbe27d9d0b3e64681.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/javax.inject-1_403a5ed8d3d543e889759087c98bc1aadd6cac6b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/6fe11f63448dfc83d457448b5c6fa6760750b2ad/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_e24389eac9229c1c27d54fd9f010e5040b8eb6b5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/d155aea16709b22a8bc443021b9afb85d302d0fb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_964f7f154963d63eb47f16fd733ed8ba1464323e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/b0c9a367ed2e485a66c26f142fd4135d171e8d10/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_84c5e05db234c05f37f1c3939d328b558713a6cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/81606c7166fcfd070a75cfa6febbae69f0d54423/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_19cf387524f87ae17f4f16f0f9c664fe1c31d371.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/javax.annotation-api-1.2_80934aed3fa156db2766241a37332656049be814.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/8894b96b1cf9da8a108aab851a105a58202a838e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_198d8129d541d145780ab7144a0a93a893f7fab8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/fa1d912e470efaa37991b13c20f01e5ae4a89d9a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_5b37ab30f3ceb23df34e650aac61fa35100d62ca.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.0/support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.0_3a841f838490d5204a30c3fb2668e46cb99d744c.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/Christian/Documents/PU/mobile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="C:\Users\thea_\Desktop\NTNU\PU\mobile\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_0ae818f1a68605d82e5ee2dba863c7322e4029f8\classes.dex" />
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ab6a5ffef584d266067b93d8f1b0e22acbd2caf3/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/51455a851d61ce6490ce3f7d381155b8842cb613/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_d675d918dda59fdf872e8a5fe42da3163f49eddb.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Christian/.android/build-cache/245d9c12cec029dbffa2973940a27556bc711b89/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ad939988a4000161a76d135c5b9bcf00d3ab97f6/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Christian/.android/build-cache/8017f85e5f897158679e570f860ad198d658fcac/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_7c034df23df7fca6f17e65c5d632845f5d30114f.jar" />
     </item>
 
 </items>
