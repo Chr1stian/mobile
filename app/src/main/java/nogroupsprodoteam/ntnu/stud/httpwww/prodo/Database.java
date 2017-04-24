@@ -373,35 +373,49 @@ public class Database {
     }
 
 
-    public static String setQuestionRating(Integer questionID){
+    public static String setQuestionRating(Integer questionID, Boolean up){
+        Integer adderer = null;
+
+        if(up==true){
+              adderer = 1;
+        }else{
+            adderer = -1;
+        }
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         Integer rating=null;
         //Integer userID = 1;
         String error ="!";
 
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT rating FROM question WHERE questionID =" +questionID);
+            PreparedStatement stmt = conn.prepareStatement("SELECT rating FROM question WHERE questionID =" + questionID);
             ResultSet rs = stmt.executeQuery();
-
+            Log.e("db","test1");
             while(rs.next()){
+                Log.e("db","Outrating");
                 Integer Outrating = Integer.parseInt(rs.getString(1));
-                rating = Outrating +1;
+                Log.e("db","Outrating"+Outrating);
+                rating = Outrating + adderer;
+                Log.e("db","rating"+rating);
             }
-
-            PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO question(rating) VALUES ('" + rating.toString()+ "') WHERE questionID= "+ questionID);
+            Log.e("db","test2"+rating);
+            PreparedStatement stmt2 = conn.prepareStatement("UPDATE question SET rating = '" + rating.toString()+ "' WHERE questionID= " + questionID);
             stmt2.execute();
 //"INSERT INTO question(topicID,userID,question,answer,rating) VALUES ('" + topicID.toString() + "','" + userID.toString() + "','" + questionString +"','" + answer +"','" + rating.toString() + "')");
             conn.close();
-
+            Log.e("db","test3");
         }
         catch(SQLException e){
             System.out.println(e);
             error = "Database error:" + e;
+            Log.e("db","exception1 "+error);
             return error;
         }
         return error;
