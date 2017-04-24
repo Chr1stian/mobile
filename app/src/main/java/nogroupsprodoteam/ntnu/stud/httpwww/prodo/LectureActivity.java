@@ -94,7 +94,7 @@ public class LectureActivity extends AppCompatActivity {
     public void swiperight(int positon){
         viewPager.setCurrentItem(positon + 1);
     }
-/   //switches fragment to the left
+    //switches fragment to the left
     public void swipeleft(int position){
         viewPager.setCurrentItem(position - 1);
     }
