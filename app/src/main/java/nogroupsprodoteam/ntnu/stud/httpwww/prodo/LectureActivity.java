@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LectureActivity extends FragmentActivity {
+public class LectureActivity extends AppCompatActivity {
     ViewPager viewPager;
     private ArrayList<Course> courseArrayList;
     private ArrayList<Lecture> lectureArrayList;
@@ -21,6 +26,8 @@ public class LectureActivity extends FragmentActivity {
     private static int selectedLectureID;
     private static List<Topic> topicsFromSelectedLecture = new ArrayList<>();
     static Integer numberOfTopics;
+    private int userID;
+    private String nickname;
 
     public static Integer getNumberOfTopics() {
         return numberOfTopics;
@@ -55,6 +62,8 @@ public class LectureActivity extends FragmentActivity {
         selectedLecture = (Lecture) extras.getSerializable("SelectedLecture");
         selectedCourseID = extras.getInt("SelectedCourseID");
         selectedLectureID = extras.getInt("SelectedLectureID");
+        userID = extras.getInt("UserID");
+        nickname = extras.getString("NickName");
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         TextView lbl_lecture = (TextView) findViewById(R.id.lbl_lecture);
@@ -73,6 +82,9 @@ public class LectureActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
         viewPager.setAdapter(swipeAdapter);
+
+
+        setTitle(nickname);
     }
     //unused method to send values to fragment
     public void sendMessage(String course, String nickname, String lecturename, Integer lectureID, Integer numberOfLectures) {
@@ -84,6 +96,36 @@ public class LectureActivity extends FragmentActivity {
         extras.putString("LectureName", lecturename);
         extras.putInt("LectureID", lectureID);
         extras.putInt("NumberOfLectures", numberOfLectures);
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //Handles button/icon click activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mybutton) {
+            openUsersQuestions();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //opens activity displaying the users asked questions
+    public void openUsersQuestions(){
+        Intent intent = new Intent(this, QuestionActivity.class);
+        Bundle extras = new Bundle();
+        extras.putInt("UserID", userID);
+        extras.putString("NickName", nickname);
+        extras.putSerializable("CourseList", courseArrayList);
+        extras.putSerializable("LectureList", lectureArrayList);
+        extras.putSerializable("TopicList", topicArrayList);
         intent.putExtras(extras);
         startActivity(intent);
     }

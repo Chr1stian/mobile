@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import static nogroupsprodoteam.ntnu.stud.httpwww.prodo.R.string.userID;
+
 public class Database {
     private static String mysqlAddr = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11164632?allowMultiQueries=true";
     private static String mysqlUser = "sql11164632";
@@ -399,11 +401,13 @@ public class Database {
             ResultSet rs = stmt.executeQuery();
             Log.e("db","test1");
             while(rs.next()){
+
                 Log.e("db","Outrating");
                 Integer Outrating = Integer.parseInt(rs.getString(1));
                 Log.e("db","Outrating"+Outrating);
                 rating = Outrating + adderer;
                 Log.e("db","rating"+rating);
+
             }
             Log.e("db","test2"+rating);
             PreparedStatement stmt2 = conn.prepareStatement("UPDATE question SET rating = '" + rating.toString()+ "' WHERE questionID= " + questionID);
@@ -444,6 +448,71 @@ public class Database {
         }
         catch(SQLException e){
             return questionList;
+        }
+    }
+
+    //gets questions for the current user
+    public static ArrayList<Question> getQuestionsWithUserID(int userID) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Question> questionList = new ArrayList<>();
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM question WHERE userID =" + userID);
+
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                ArrayList<String> question = new ArrayList<>();
+                for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
+                    question.add(rs.getString(i));
+                }questionList.add(new Question(question.get(0), question.get(1), question.get(2), question.get(3), question.get(4), question.get(5)));
+            }
+            conn.close();
+            return questionList;
+        }
+        catch(SQLException e){
+            return questionList;
+        }
+    }
+
+    //UNUSED
+    //gets the origin of the question looked at. Coursename - Lecturename - Topicname
+    public static String getQuestionOrigin(int topicID) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String origin = "Cannot find origin of question";
+        String topicname = null, lectureID = null, lecturename = null, courseID = null, coursename = null;
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("SELECT topic.name, topic.lectureID FROM question INNER JOIN topic ON topic.topicID = question.topicID WHERE question.topicID = " + topicID);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                topicname = rs.getString(1);
+                lectureID = rs.getString(2);
+            }
+            PreparedStatement stmt2 = conn.prepareStatement("SELECT lecture.name, lecture.courseID FROM topic INNER JOIN lecture ON lecture.lectureID = topic.lectureID WHERE topic.lectureID = " + lectureID);
+            ResultSet rs2 = stmt2.executeQuery();
+            while(rs2.next()){
+                lecturename = rs2.getString(1);
+                courseID = rs2.getString(2);
+            }
+            PreparedStatement stmt3 = conn.prepareStatement("SELECT course.name FROM lecture INNER JOIN course ON course.courseID = lecture.courseID WHERE lecture.courseID = " + courseID);
+            ResultSet rs3 = stmt3.executeQuery();
+            while(rs3.next()){
+                coursename = rs3.getString(1);
+            }
+            conn.close();
+            origin = coursename + " - " + lecturename + " - " + topicname;
+            return origin;
+        }
+        catch(SQLException e){
+            return origin;
         }
     }
 }

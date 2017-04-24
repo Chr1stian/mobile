@@ -11,8 +11,6 @@ import android.widget.TextView;
  */
 
 class QuestionViewHolder extends RecyclerView.ViewHolder {
-
-
     public final TextView questionTextView;
     public final TextView answerTextView;
     public final TextView scoreTextView;
