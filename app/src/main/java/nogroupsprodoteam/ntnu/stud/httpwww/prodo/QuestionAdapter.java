@@ -61,7 +61,7 @@ class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
             public void onClick(View v) {
                 Log.e("try","isupworking");
                 Database.setQuestionRating(Integer.parseInt(questions.get(position).getQuestionID()),true);
-                holder.endorseButtonUp.setEnabled(false);
+                //holder.endorseButtonUp.setEnabled(false);
                 //PageFragment.questionUpdate();
             }
         });
@@ -72,7 +72,7 @@ class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
             public void onClick(View v) {
                 Log.e("try","isdownworking");
                 Database.setQuestionRating(Integer.parseInt(questions.get(position).getQuestionID()),false);
-                holder.endorseButtonUp.setEnabled(false);
+               // holder.endorseButtonUp.setEnabled(false);
                 //PageFragment.questionUpdate();
 
             }
