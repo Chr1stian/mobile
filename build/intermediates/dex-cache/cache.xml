@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ab7c597db03ac04b1c50593c618316a714685bba">
+        sha1="866dab01fce2cea6e34b1597a5d59230af6d7f08">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9a1481f288de81387525024ac4144e6b8c3cdc54/classes.dex" />
     </item>
     <item
@@ -126,15 +126,6 @@
         revision="25.0.2"
         sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/androidTest/debug/classes_825ac3864409cf1f28f1ca212f7025d13f5ea2f6.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Christian/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_99e3ae70aa019c654502d079ef037d147230b749/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -279,15 +270,6 @@
         revision="25.0.2"
         sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
         <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/pre-dexed/debug/classes_d675d918dda59fdf872e8a5fe42da3163f49eddb.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Christian/.android/build-cache/245d9c12cec029dbffa2973940a27556bc711b89/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="/Users/Christian/Documents/PU/mobile/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ad939988a4000161a76d135c5b9bcf00d3ab97f6/classes.dex" />
     </item>
     <item
         is-multidex="false"
