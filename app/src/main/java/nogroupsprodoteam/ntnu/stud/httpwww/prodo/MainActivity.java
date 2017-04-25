@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +48,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+/*
+        Thread welcomeThread = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    super.run();
+                    sleep(10000);  //Delay of 10 seconds
+                } catch (Exception e) {
+
+                } finally {
+
+                    Intent i = new Intent(SplashActivity.this,
+                            MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+        };
+        welcomeThread.start();
+       */
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Prodo");
+        actionBar.setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         //needed for database connection
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -56,20 +56,25 @@ class QuestionAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
     }
 
 
-    public void buttonListenerOnUpButton(QuestionViewHolder holder, final int position) {
+    public void buttonListenerOnUpButton(final QuestionViewHolder holder, final int position) {
         holder.endorseButtonUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.e("try","isupworking");
                 Database.setQuestionRating(Integer.parseInt(questions.get(position).getQuestionID()),true);
+                holder.endorseButtonUp.setEnabled(false);
+                //PageFragment.questionUpdate();
             }
         });
     }
 
-    public void buttonListenerOnDownButton(QuestionViewHolder holder, final int position) {
+    public void buttonListenerOnDownButton(final QuestionViewHolder holder, final int position) {
         holder.endorseButtonDown.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.e("try","isdownworking");
                 Database.setQuestionRating(Integer.parseInt(questions.get(position).getQuestionID()),false);
+                holder.endorseButtonUp.setEnabled(false);
+                //PageFragment.questionUpdate();
+
             }
         });
     }

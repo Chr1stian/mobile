@@ -1,6 +1,7 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,11 @@ public class QuestionActivity extends AppCompatActivity {
         courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(nickname);
+        actionBar.setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         questionsWithUserID = Database.getQuestionsWithUserID(userID);
         setTitle(nickname);
