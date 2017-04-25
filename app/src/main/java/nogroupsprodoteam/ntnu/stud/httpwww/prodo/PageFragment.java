@@ -1,7 +1,9 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -36,27 +38,36 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static nogroupsprodoteam.ntnu.stud.httpwww.prodo.R.string.userID;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PageFragment extends Fragment {
     TextView textView, ratingDescription;
-    String staus;
+    Integer staus;
     RatingBar ratingBar;
     View view;
+
     Integer topicID, position, count;
     Button submitQuestionButton, btn_swipeleft, btn_swiperight;
    // TextView textQuestion, testShowRating;
     EditText question;
     String questionString;
     TextView submitOK;
-    ArrayList<Question> questionsAtTopicID;
+
+     ArrayList<Question> questionsAtTopicID;
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
-    RecyclerView rec_Questions;
-    QuestionAdapter rec_QPF_adapter;
+     RecyclerView rec_Questions;
+     QuestionAdapter rec_QPF_adapter;
     LinearLayoutManager rec_QPF_manager;
+    Boolean hasRated;
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+
+
 
     final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
 
@@ -126,6 +137,8 @@ public class PageFragment extends Fragment {
         ratingDescription.setText("How well do you understand the current topic?");
       //  textQuestion = (TextView)view.findViewById(R.id.lbl_askQuestion);
       //  textQuestion.setText("Do you have any questions?");
+
+        hasRated = false;
         submitQuestionButton = (Button)view.findViewById(R.id.btn_SubmitQuestion);
         question = (EditText)view.findViewById(R.id.txt_question);
         question.setHint("Ask a question");
@@ -166,7 +179,16 @@ public class PageFragment extends Fragment {
         };
         ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 10, 10, TimeUnit.SECONDS);
         */
-        return view;
+       sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+       editor = sharedPref.edit();
+
+
+
+        staus = sharedPref.getInt("Rating:"+topicID, 0);
+
+        ratingBar.setRating(staus);
+
+       return view;
     }
 
     /*
@@ -184,8 +206,17 @@ public class PageFragment extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 //showing rating value in testtext display and sends rating to database
-                staus = Integer.toString(Math.round(rating));
-                String errorMessage = Database.setRating(topicID,Math.round(rating));
+                staus = Math.round(rating);
+                String errorMessage;
+                editor.putInt("Rating:"+topicID,staus);
+                editor.commit();
+                if (hasRated==false){
+                    errorMessage = Database.setRating(topicID,Math.round(rating),LectureActivity.getUserID());
+                } else if (hasRated == true){
+                    errorMessage = Database.updateRating(topicID,Math.round(rating),LectureActivity.getUserID());
+                }
+                hasRated = true;
+
                 //testShowRating.setText(errorMessage);
             }
         });
@@ -235,7 +266,7 @@ public class PageFragment extends Fragment {
             question.setHint("Ask a new question");
             return true;
         } else {
-            question.setHint(""+lengthOfString);
+            question.setHint("Write sommething..");
             /*"Invalid question, try again."*/
             submitOK.setText("Question not submitted...");
             return false;
