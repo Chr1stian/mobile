@@ -1,6 +1,7 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_activity);
 
+
         //gets values from SelectionActivity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -45,6 +47,11 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
         selectedCourseID = extras.getInt("SelectedCourseID");
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(nickname);
+        actionBar.setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " + courseArrayList.get(selectedCourseID - 1).getCourseName());

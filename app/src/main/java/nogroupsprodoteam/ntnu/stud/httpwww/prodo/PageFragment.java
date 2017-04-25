@@ -45,17 +45,17 @@ public class PageFragment extends Fragment {
     String staus;
     RatingBar ratingBar;
     View view;
-    Integer topicID, position, count;
+    static Integer topicID, position, count;
     Button submitQuestionButton, btn_swipeleft, btn_swiperight;
    // TextView textQuestion, testShowRating;
     EditText question;
     String questionString;
     TextView submitOK;
-    ArrayList<Question> questionsAtTopicID;
+    static ArrayList<Question> questionsAtTopicID;
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
-    private RecyclerView rec_Questions;
-    QuestionAdapter rec_QPF_adapter;
+    static RecyclerView rec_Questions;
+    static QuestionAdapter rec_QPF_adapter;
     LinearLayoutManager rec_QPF_manager;
 
     final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
@@ -221,7 +221,7 @@ public class PageFragment extends Fragment {
         });
     }
 
-    private void questionUpdate() {
+    public static void questionUpdate() {
         questionsAtTopicID.clear();
         questionsAtTopicID.addAll(SwipeAdapter.getQuestionsAtTopic(Database.getAllQuestions(),topicID));
         rec_QPF_adapter.notifyDataSetChanged();

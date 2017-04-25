@@ -1,6 +1,7 @@
 package nogroupsprodoteam.ntnu.stud.httpwww.prodo;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,11 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         questionArrayList = (ArrayList<Question>) extras.getSerializable("QuestionList");
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(nickname);
+        actionBar.setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         recCourses = (RecyclerView) findViewById(R.id.recycler_view);
         recCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

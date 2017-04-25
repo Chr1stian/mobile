@@ -68,6 +68,11 @@ public class LectureActivity extends AppCompatActivity {
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(nickname);
+        actionBar.setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         TextView lbl_lecture = (TextView) findViewById(R.id.lbl_lecture);
         lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " +(courseArrayList.get(selectedCourseID - 1).getCourseName()));
