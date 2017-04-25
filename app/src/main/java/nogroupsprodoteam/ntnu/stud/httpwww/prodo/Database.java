@@ -326,7 +326,7 @@ public class Database {
 
 
         String answer = null;
-        String error ="*Question submitted*";
+        String error =null;
         Integer rating = 0;
 
         try{

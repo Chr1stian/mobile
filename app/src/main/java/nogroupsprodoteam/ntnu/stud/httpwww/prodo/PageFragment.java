@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 
 
@@ -40,13 +41,13 @@ import java.util.concurrent.TimeUnit;
  * A simple {@link Fragment} subclass.
  */
 public class PageFragment extends Fragment {
-    TextView textView, testShowRating, ratingDescription;
+    TextView textView, ratingDescription;
     String staus;
     RatingBar ratingBar;
     View view;
     Integer topicID, position, count;
     Button submitQuestionButton, btn_swipeleft, btn_swiperight;
-    TextView textQuestion;
+   // TextView textQuestion, testShowRating;
     EditText question;
     String questionString;
     TextView submitOK;
@@ -66,7 +67,6 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.page_fragment, container, false);
         setupUI(view.findViewById(R.id.rellay_parentforPageFragment));
@@ -90,6 +90,8 @@ public class PageFragment extends Fragment {
         Integer lectureID = extras.getInt("LectureID");
         Integer numberOfLectures = extras.getInt("NumberOfLectures");
 
+       // questionUpdate();
+
         //hide keyboard?
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -97,10 +99,10 @@ public class PageFragment extends Fragment {
         btn_swipeleft = (Button) view.findViewById(R.id.btn_swipeleft);
         btn_swiperight = (Button) view.findViewById(R.id.btn_swiperight);
         if(position == 0){
-            btn_swipeleft.setVisibility(View.GONE);
+            btn_swipeleft.setVisibility(View.INVISIBLE);
         }
         if(position == count - 1){
-            btn_swiperight.setVisibility(View.GONE);
+            btn_swiperight.setVisibility(View.INVISIBLE);
         }
 
         //change view/fragment when clicking on left/right buttons
@@ -118,12 +120,12 @@ public class PageFragment extends Fragment {
             }
         });
 
-        testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
-        testShowRating.setText("No rating yet..");
+        //testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
+        //testShowRating.setText("No rating yet..");
         ratingDescription = (TextView)view.findViewById(R.id.lbl_ratingDescription);
         ratingDescription.setText("How well do you understand the current topic?");
-        textQuestion = (TextView)view.findViewById(R.id.lbl_askQuestion);
-        textQuestion.setText("Do you have any questions?");
+      //  textQuestion = (TextView)view.findViewById(R.id.lbl_askQuestion);
+      //  textQuestion.setText("Do you have any questions?");
         submitQuestionButton = (Button)view.findViewById(R.id.btn_SubmitQuestion);
         question = (EditText)view.findViewById(R.id.txt_question);
         question.setHint("Ask a question");
@@ -148,23 +150,34 @@ public class PageFragment extends Fragment {
                 rec_QPF_manager.getOrientation());
         rec_Questions.addItemDecoration(dividerItemDecoration);
 
-        //Periodical update?
-        ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
+
+        //Periodical update? WHAT TODO
+       /* ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
                 Executors.newScheduledThreadPool(5);
         Runnable periodicalUpdate = new Runnable(){
             @Override
             public void run() {
                 try{
                     //Thread.sleep(10 * 1000);
-                    //updateListOfQuestions();
+                    questionUpdate();
                 }catch(Exception e){
                 }
             }
         };
-        ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 30, 30, TimeUnit.SECONDS);
+        ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 10, 10, TimeUnit.SECONDS);
+        */
         return view;
     }
 
+    /*
+    @Override
+
+    public void onResume()
+    {
+        super.onResume();
+        questionUpdate();
+    }
+    */
     private void addListenerOnRatingBar() {
         //listening for changes in rating
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -173,7 +186,7 @@ public class PageFragment extends Fragment {
                 //showing rating value in testtext display and sends rating to database
                 staus = Integer.toString(Math.round(rating));
                 String errorMessage = Database.setRating(topicID,Math.round(rating));
-                testShowRating.setText(errorMessage);
+                //testShowRating.setText(errorMessage);
             }
         });
     }
@@ -183,7 +196,8 @@ public class PageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 questionString = question.getText().toString();
-                submitOK.setText("Processing...");
+                question.setText("Processing...");
+                /// /submitOK.setText("Processing...");
                 //String length validation
                 if (isQuestionValid(questionString)){
                     final String errorMessage = Database.sendQuestion(topicID,questionString,LectureActivity.getUserID());
@@ -196,9 +210,8 @@ public class PageFragment extends Fragment {
                             submitOK.setText(errorMessage);
                             question.setText(null);
                             submitQuestionButton.setEnabled(true);
-                            questionsAtTopicID.clear();
-                            questionsAtTopicID.addAll(SwipeAdapter.getQuestionsAtTopic(Database.getAllQuestions(),topicID));
-                            rec_QPF_adapter.notifyDataSetChanged();
+                            questionUpdate();
+
                         }
                     },1000);
                 }else{
@@ -206,6 +219,12 @@ public class PageFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void questionUpdate() {
+        questionsAtTopicID.clear();
+        questionsAtTopicID.addAll(SwipeAdapter.getQuestionsAtTopic(Database.getAllQuestions(),topicID));
+        rec_QPF_adapter.notifyDataSetChanged();
     }
 
     private boolean isQuestionValid(String questionString){

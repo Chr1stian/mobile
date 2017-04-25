@@ -7,73 +7,110 @@
     tools:context="nogroupsprodoteam.ntnu.stud.httpwww.prodo.PageFragment">
 
 
-    <TextView
-        android:id="@+id/lbl_page"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Page number"
-        android:textAlignment="center"
-        android:textSize="24sp"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/btn_SubmitQuestion"
-        android:layout_alignLeft="@+id/ratingBar_understanding"
-        android:layout_alignStart="@+id/ratingBar_understanding" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <RatingBar
-        android:id="@+id/ratingBar_understanding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbl_ratingDescription"
-        android:layout_centerHorizontal="true"
-        android:numStars="5"
-        android:stepSize="1" />
 
-    <TextView
-        android:id="@+id/lbl_testRatingView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/ratingBar_understanding"
-        android:layout_alignRight="@+id/ratingBar_understanding"
-        android:layout_alignEnd="@+id/ratingBar_understanding" />
+        <Button
+            android:id="@+id/btn_swipeleft"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+        <TextView
+            android:id="@+id/lbl_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Page number"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="21dp"
+            android:layout_marginLeft="21dp"/>
+
+        <Button
+            android:id="@+id/btn_swiperight"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_ratingDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/btn_swiperight"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ll_header"
+        android:text="TextView" />
 
+    <RatingBar
+        android:id="@+id/ratingBar_understanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        android:layout_below="@+id/lbl_ratingDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="2dp"/>
+
+    <TextView
+        android:id="@+id/lbl_testRatingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ratingBar_understanding"
+        android:layout_alignRight="@+id/ratingBar_understanding"
+        android:layout_below="@+id/ratingBar_understanding"
+        android:text="TextView"
+        android:visibility="gone" />
 
     <View
         android:id="@+id/view"
         style="@style/Divider"
-        android:layout_below="@+id/lbl_testRatingView"
+        android:layout_below="@+id/ratingBar_understanding"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:visibility="visible" />
+
 
     <TextView
         android:id="@+id/lbl_askQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/view"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp" />
+        android:layout_below="@+id/view"
+        android:layout_marginTop="0dp"
+        android:text="TextView"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/txt_question"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lbl_askQuestion"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/btn_SubmitQuestion"
+        android:layout_toLeftOf="@+id/btn_SubmitQuestion"
         android:ems="10"
         android:hint="Ask a question" />
 
@@ -81,63 +118,45 @@
         android:id="@+id/btn_SubmitQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@id/lbl_askQuestion"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/txt_question"
         android:minHeight="0dp"
         android:minWidth="0dp"
         android:text="Submit" />
-
+    <!--android:layout_toRightOf="@+id/txt_question"
+            android:layout_toEndOf="@id/txt_question"-->
     <TextView
         android:id="@+id/lbl_submitOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_alignBaseline="@+id/btn_SubmitQuestion"
         android:layout_alignBottom="@+id/btn_SubmitQuestion"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
         android:layout_toLeftOf="@+id/btn_SubmitQuestion"
         android:layout_toStartOf="@+id/btn_SubmitQuestion"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp" />
+        android:text="TextView"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/lbl_questionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/view"
         android:layout_alignStart="@+id/view"
-        android:layout_below="@+id/lbl_submitOK"
-        android:layout_marginBottom="7dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/txt_question"
+        android:layout_marginTop="3dp"
         android:text="Questions:"
         android:textSize="20dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_list_questions"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_questionHeader"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView3" />
-
-    <Button
-        android:id="@+id/btn_swiperight"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/ratingBar_understanding"
-        android:background="@drawable/ic_keyboard_arrow_right_black_24dp" />
-
-    <Button
-        android:id="@+id/btn_swipeleft"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
-        android:layout_toLeftOf="@+id/lbl_page"
-        android:layout_toStartOf="@+id/lbl_page" />
+         />
 
     <!-- <ListView
         android:id="@+id/list_questions"
