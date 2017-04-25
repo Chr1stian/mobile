@@ -27,27 +27,6 @@ public class Database {
         this.mysqlPass = password;
     }
 
-    public static String test(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try{
-            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM bruker");
-
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next())
-                return rs.getString(2);
-            conn.close();
-            return null;
-
-        }
-        catch(SQLException e){
-            return e.toString();
-        }
-    }
     //returns ArrayList of courses from database
     public static ArrayList<Course> getCourses(){
         try {
