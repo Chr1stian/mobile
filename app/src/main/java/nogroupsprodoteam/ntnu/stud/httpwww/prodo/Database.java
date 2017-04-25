@@ -186,14 +186,13 @@ public class Database {
     }
 
     //Uploading the rating to the database
-    public static String setRating(Integer topicID, Integer stars){
+    public static String setRating(Integer topicID, Integer stars, Integer userID){
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         Integer rating = null;
-        Integer userID = 1;
         String error ="Rating submitted";
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
@@ -208,6 +207,29 @@ public class Database {
         }
         return error;
     }
+
+    //Updating the rating in the Databse
+    public static String updateRating(Integer topicID, Integer stars, Integer userID) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Integer rating = null;
+        String error ="Rating submitted";
+        try{
+            Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE rating SET stars ="+stars.toString()+" WHERE userID = " +userID.toString()+ "AND topicID = " + topicID.toString());
+            conn.close();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            error = "Database error:" + e;
+            return error;
+        }
+        return error;
+    }
+
     //Checks if nickname is already registered in database
     public static boolean checkNickname(String nickname){
         try {
@@ -496,4 +518,6 @@ public class Database {
             return origin;
         }
     }
+
+
 }
