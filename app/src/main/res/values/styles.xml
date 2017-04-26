@@ -10,6 +10,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
     <style name="MyActionBarLogo" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/colorPrimary</item>
         <item name="logo">@drawable/ic_androidcooffeemini4</item>

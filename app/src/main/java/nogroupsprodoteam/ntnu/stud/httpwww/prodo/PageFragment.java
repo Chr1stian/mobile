@@ -49,12 +49,14 @@ public class PageFragment extends Fragment {
     Integer staus;
     RatingBar ratingBar;
     View view;
-     Integer topicID, position, count;
+
+    Integer topicID, position, count;
     Button submitQuestionButton, btn_swipeleft, btn_swiperight;
    // TextView textQuestion, testShowRating;
     EditText question;
     String questionString;
     TextView submitOK;
+
      ArrayList<Question> questionsAtTopicID;
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;

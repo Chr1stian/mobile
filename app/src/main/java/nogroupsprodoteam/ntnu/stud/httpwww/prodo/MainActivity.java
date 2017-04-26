@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_changeuser;
     Button btn_proceed;
     TextView lbl_proceed;
+    ImageButton imgbtn_onwards;
 
     ArrayList<Course> courseArrayList;
     ArrayList<Lecture> lectureArrayList;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 /*
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         btn_changeuser = (Button) findViewById(R.id.btn_changeuser);
         btn_proceed = (Button) findViewById(R.id.btn_staysameuser);
         lbl_proceed = (TextView) findViewById(R.id.lbl_proceed);
+        imgbtn_onwards = (ImageButton) findViewById(R.id.imgbtn_onwards);
+
 
         //Database connection 	
          courseArrayList = Database.getCourses();
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         buttonListenerOnOkButton();
         buttonListenerOnChangeUserButton();
         buttonListenerOnProceedButton();
+        buttonListenerOnOnwardsButton();
 
         run();
     }
@@ -129,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
         extras.putSerializable("TopicList", topicArrayList);
         extras.putSerializable("QuestionList", questionArrayList);
         extras.putInt("UserID", userID);
+        makeOnwardsButtonsVISIBLE();
+        lbl_welcomemsg.setText("Welcome");
         intent.putExtras(extras);
         startActivity(intent);
     }
@@ -176,6 +184,14 @@ public class MainActivity extends AppCompatActivity {
         btn_proceed.setVisibility(View.GONE);
         btn_changeuser.setVisibility(View.GONE);
     }
+    public void makeOnwardsButtonsVISIBLE(){
+        imgbtn_onwards.setVisibility(View.VISIBLE);
+    }
+
+    //hide welcome message buttons
+    public void makeOnwardsButtonsGONE(){
+        imgbtn_onwards.setVisibility(View.GONE);
+    }
 
     // onclicklistener for Yes button
     public void buttonListenerOnProceedButton(){
@@ -183,9 +199,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 makeWelcomeScreenButtonsGONE();
                 sendMessage(courseArrayList, lectureArrayList, topicArrayList,questionArrayList);
+              //  makeOnwardsButtonsVISIBLE();
             }
         });
     }
+
+    // onclicklistener for Onwards button
+    public void buttonListenerOnOnwardsButton(){
+        imgbtn_onwards.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendMessage(courseArrayList, lectureArrayList, topicArrayList,questionArrayList);
+            }
+        });
+    }
+
 
     // onclicklistener for Change User button
     public void buttonListenerOnChangeUserButton(){
@@ -228,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
                     makeWelcomeScreenVISIBLE();
                     makeLogInMenuGONE();
                     sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
+                   // makeOnwardsButtonsVISIBLE();
                 } else {
                     alert11.show();
                 }
@@ -248,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 makeLogInMenuGONE();
                 makeWelcomeScreenVISIBLE();
 
+
                 Log.e("alert","Trykking på yes knappen");
                 userID = Database.getUserID(username);
                 editor.putInt(getString(R.string.userID), userID);
@@ -257,16 +286,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("try",sharedPref.getString(getString(R.string.username), "Error"));
                 lbl_username.setText(username);
                // sendMessage(courseArrayList,lectureArrayList,topicArrayList);
-
+                makeOnwardsButtonsVISIBLE();
 
                 Log.e("test", "1 alert");
-                new Handler().postDelayed(new Runnable() {
+               /* new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         Log.e("test","2 alert");
                         sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
                     }
-                },1500);
+                },1500); */
 
                 Log.e("test", "3 alert");
 /*
@@ -295,6 +324,8 @@ public class MainActivity extends AppCompatActivity {
         makeLogInMenuGONE();
         makeWelcomeScreenButtonsGONE();
         makeWelcomeScreenGONE();
+        makeOnwardsButtonsGONE();
+        lbl_welcomemsg.setText("Welcome back");
 
         //get info for from app preferences files
         userID = sharedPref.getInt(getString(R.string.userID), 0);
