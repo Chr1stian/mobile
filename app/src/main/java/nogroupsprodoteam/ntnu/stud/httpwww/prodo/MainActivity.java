@@ -51,27 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        Thread welcomeThread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    super.run();
-                    sleep(10000);  //Delay of 10 seconds
-                } catch (Exception e) {
-
-                } finally {
-
-                    Intent i = new Intent(SplashActivity.this,
-                            MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            }
-        };
-        welcomeThread.start();
-       */
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Prodo");
@@ -92,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         lbl_proceed = (TextView) findViewById(R.id.lbl_proceed);
         imgbtn_onwards = (ImageButton) findViewById(R.id.imgbtn_onwards);
 
-
         //Database connection 	
          courseArrayList = Database.getCourses();
          lectureArrayList = Database.getLectures();
@@ -102,12 +80,6 @@ public class MainActivity extends AppCompatActivity {
          //create shared preferences editor
          sharedPref = this.getPreferences(Context.MODE_PRIVATE);
          editor = sharedPref.edit();
-
-        /*
-         For testing purpose
-         editor.clear();
-         editor.commit();
-         */
         
         //createAlert
         createAlert();
@@ -135,10 +107,9 @@ public class MainActivity extends AppCompatActivity {
         extras.putSerializable("TopicList", topicArrayList);
         extras.putSerializable("QuestionList", questionArrayList);
         extras.putInt("UserID", userID);
-        makeOnwardsButtonsVISIBLE();
-        lbl_welcomemsg.setText("Welcome");
         intent.putExtras(extras);
         startActivity(intent);
+        makeOnwardsButtonsVISIBLE();
     }
 
     //shows log in elements
@@ -252,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("test", "return from database: " + userID);
                     Log.e("test", "return from preferences: " + sharedPref.getInt(getString(R.string.userID), 0));
                     //Hide log in meu¨'
+                    lbl_welcomemsg.setText("Welcome");
                     makeWelcomeScreenVISIBLE();
                     makeLogInMenuGONE();
                     sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
@@ -274,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 makeLogInMenuGONE();
+                lbl_welcomemsg.setText("Welcome");
                 makeWelcomeScreenVISIBLE();
 
 
