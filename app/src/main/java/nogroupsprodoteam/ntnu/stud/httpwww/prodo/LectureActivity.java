@@ -5,12 +5,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,16 +66,19 @@ public class LectureActivity extends AppCompatActivity {
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
 
+        //sets your nickname and the prodo logo in the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(nickname);
         actionBar.setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        //displays selected course and lecture
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         TextView lbl_lecture = (TextView) findViewById(R.id.lbl_lecture);
         lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " +(courseArrayList.get(selectedCourseID - 1).getCourseName()));
         lbl_lecture.setText(selectedLecture.getLectureName());
 
+        //creates new arraylist with the topics that belong to the selected lecture
         topicsFromSelectedLecture.clear();
         for( Topic topic : topicArrayList) {
             if (topic.getLectureID().equals(Integer.toString(selectedLectureID))) {
@@ -90,10 +91,6 @@ public class LectureActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
         viewPager.setAdapter(swipeAdapter);
-
-
-
-        setTitle(nickname);
     }
     //switches fragment to the right
     public void swiperight(int positon){
@@ -104,20 +101,7 @@ public class LectureActivity extends AppCompatActivity {
         viewPager.setCurrentItem(position - 1);
     }
 
-    //unused method to send values to fragment
-    public void sendMessage(String course, String nickname, String lecturename, Integer lectureID, Integer numberOfLectures) {
-        Intent intent = new Intent(this, PageFragment.class);
-        Bundle extras = new Bundle();
-
-        extras.putString("CourseName", course);
-        extras.putString("NickName", nickname);
-        extras.putString("LectureName", lecturename);
-        extras.putInt("LectureID", lectureID);
-        extras.putInt("NumberOfLectures", numberOfLectures);
-        intent.putExtras(extras);
-        startActivity(intent);
-    }
-
+    //Creates account icon in actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

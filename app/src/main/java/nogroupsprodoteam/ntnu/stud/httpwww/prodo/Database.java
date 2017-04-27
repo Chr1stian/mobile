@@ -100,8 +100,6 @@ public class Database {
             return lectureID;
         }
         catch(SQLException e){
-            System.out.println(e);
-            lectureID = 999;
             return lectureID;
         }
     }
@@ -125,12 +123,10 @@ public class Database {
             return numberOfTopics;
         }
         catch(SQLException e){
-            System.out.println(e);
-            numberOfTopics = 9;
             return numberOfTopics;
         }
     }
-    //returns topic from database
+    //returns arraylist of topics from database
     public static ArrayList<Topic> getTopics(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -177,8 +173,6 @@ public class Database {
             return topicID;
         }
         catch(SQLException e){
-            System.out.println(e);
-            topicID = null;
             return topicID;
         }
 
@@ -201,7 +195,6 @@ public class Database {
             conn.close();
         }
         catch(SQLException e){
-            System.out.println(e);
             error = "Database error:" + e;
             return error;
         }
@@ -223,7 +216,6 @@ public class Database {
             conn.close();
         }
         catch(SQLException e){
-            System.out.println(e);
             error = "Database error:" + e;
             return error;
         }
@@ -286,17 +278,14 @@ public class Database {
         return userID;
     }
 
-    //get userID from database
+    //gets userID from database
     public static Integer getUserID(String userName){
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         Integer userID = null;
-        Log.e("db","1 " +userID);
-
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
             PreparedStatement stmt = conn.prepareStatement("SELECT userID FROM user WHERE name = '" + userName+"'");
@@ -308,7 +297,6 @@ public class Database {
             return userID;
         }
         catch(SQLException e){
-            System.out.println(e);
             userID = null;
             return userID;
         }
@@ -318,17 +306,12 @@ public class Database {
 
     //send Questions to Database
     public static String sendQuestion(Integer topicID, String questionString, Integer userID) {
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-        String answer = null;
-        String error =null;
-        Integer rating = 0;
+        String error = null;
 
         try{
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
@@ -338,7 +321,6 @@ public class Database {
             conn.close();
         }
         catch(SQLException e){
-            System.out.println(e);
             error = "Database error:" + e;
             return error;
         }
@@ -363,19 +345,16 @@ public class Database {
                 for(int i = 1; i < rs.getMetaData().getColumnCount() + 1; i++){
                     question.add(rs.getString(i));
                 }questionList.add(new Question(question.get(0), question.get(1), question.get(2),question.get(3), question.get(4), question.get(5)));
-
             }
             conn.close();
             return questionList;
         }
         catch(SQLException e){
-            System.out.println(e);
-
             return questionList;
         }
     }
 
-
+    //sets rating for questions
     public static String setQuestionRating(Integer questionID, Boolean up){
         Integer adderer = null;
 
@@ -384,8 +363,6 @@ public class Database {
         }else{
             adderer = -1;
         }
-
-
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -400,32 +377,23 @@ public class Database {
             Connection conn = DriverManager.getConnection(mysqlAddr, mysqlUser, mysqlPass);
             PreparedStatement stmt = conn.prepareStatement("SELECT rating FROM question WHERE questionID =" + questionID);
             ResultSet rs = stmt.executeQuery();
-            Log.e("db","test1");
             while(rs.next()){
-
-                Log.e("db","Outrating");
                 Integer Outrating = Integer.parseInt(rs.getString(1));
-                Log.e("db","Outrating"+Outrating);
                 rating = Outrating + adderer;
-                Log.e("db","rating"+rating);
-
             }
-            Log.e("db","test2"+rating);
             PreparedStatement stmt2 = conn.prepareStatement("UPDATE question SET rating = '" + rating.toString()+ "' WHERE questionID= " + questionID);
             stmt2.execute();
 //"INSERT INTO question(topicID,userID,question,answer,rating) VALUES ('" + topicID.toString() + "','" + userID.toString() + "','" + questionString +"','" + answer +"','" + rating.toString() + "')");
             conn.close();
-            Log.e("db","test3");
         }
         catch(SQLException e){
-            System.out.println(e);
             error = "Database error:" + e;
-            Log.e("db","exception1 "+error);
             return error;
         }
         return error;
     }
 
+    //returns arraylist of questions from the database
     public static ArrayList<Question> getAllQuestions() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -475,7 +443,6 @@ public class Database {
             return questionList;
         }
         catch(SQLException e){
-            Log.e("db","ordering "+e);
             return questionList;
 
         }

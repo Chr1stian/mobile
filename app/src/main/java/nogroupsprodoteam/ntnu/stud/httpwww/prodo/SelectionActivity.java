@@ -28,6 +28,7 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selection_activity);
 
+        //gets values from MainActivity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         courseArrayList = (ArrayList<Course>) extras.getSerializable("CourseList");
@@ -37,18 +38,18 @@ public class SelectionActivity extends AppCompatActivity implements CourseAdapte
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
 
+        //sets nickname in actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(nickname);
         actionBar.setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        //creates and fills a recycleview with the list of courses
         recCourses = (RecyclerView) findViewById(R.id.recycler_view);
         recCourses.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         CourseAdapter adapter = new CourseAdapter(courseArrayList, getLayoutInflater());
         adapter.setClickListener(this);
         recCourses.setAdapter(adapter);
-
-        setTitle(nickname);
     }
 
     //Sends values to and opens CourseActivity
