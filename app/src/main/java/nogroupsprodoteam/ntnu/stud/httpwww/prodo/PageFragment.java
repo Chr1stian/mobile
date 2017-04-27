@@ -33,12 +33,6 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
-import static nogroupsprodoteam.ntnu.stud.httpwww.prodo.R.string.userID;
 
 
 /**
@@ -49,24 +43,21 @@ public class PageFragment extends Fragment {
     Integer staus;
     RatingBar ratingBar;
     View view;
-
     Integer topicID, position, count;
     Button submitQuestionButton, btn_swipeleft, btn_swiperight;
-   // TextView textQuestion, testShowRating;
     EditText question;
     String questionString;
     TextView submitOK;
 
-     ArrayList<Question> questionsAtTopicID;
+    ArrayList<Question> questionsAtTopicID;
     ListView showQuestions;
     ArrayAdapter<String> arrayAdapter;
-     RecyclerView rec_Questions;
-     QuestionAdapter rec_QPF_adapter;
+    RecyclerView rec_Questions;
+    QuestionAdapter rec_QPF_adapter;
     LinearLayoutManager rec_QPF_manager;
     Boolean hasRated;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-
 
 
     final static DateFormat fmt = DateFormat.getTimeInstance(DateFormat.LONG);
@@ -91,19 +82,7 @@ public class PageFragment extends Fragment {
         questionsAtTopicID = (ArrayList<Question>) bundle.getSerializable("QuestionList");
         textView.setText(topic);
 
-        //currently unused and unreachable code for getting values from LectureActivity
-        //use SendMessage in LectureActivity first
-        Intent intent = getActivity().getIntent();
-        Bundle extras = intent.getExtras();
-        String coursename = extras.getString("CourseName");
-        String nickname = extras.getString("NickName");
-        String lecturename = extras.getString("LectureName");
-        Integer lectureID = extras.getInt("LectureID");
-        Integer numberOfLectures = extras.getInt("NumberOfLectures");
-
-       // questionUpdate();
-
-        //hide keyboard?
+        //hide keyboard
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //hide or show appropriate buttons for changing fragment/swiping
@@ -131,12 +110,10 @@ public class PageFragment extends Fragment {
             }
         });
 
-        //testShowRating = (TextView)view.findViewById(R.id.lbl_testRatingView);
-        //testShowRating.setText("No rating yet..");
+
         ratingDescription = (TextView)view.findViewById(R.id.lbl_ratingDescription);
         ratingDescription.setText("How well do you understand the current topic?");
-      //  textQuestion = (TextView)view.findViewById(R.id.lbl_askQuestion);
-      //  textQuestion.setText("Do you have any questions?");
+
 
         hasRated = false;
         submitQuestionButton = (Button)view.findViewById(R.id.btn_SubmitQuestion);
@@ -164,21 +141,6 @@ public class PageFragment extends Fragment {
         rec_Questions.addItemDecoration(dividerItemDecoration);
 
 
-        //Periodical update? WHAT TODO
-       /* ScheduledThreadPoolExecutor sch = (ScheduledThreadPoolExecutor)
-                Executors.newScheduledThreadPool(5);
-        Runnable periodicalUpdate = new Runnable(){
-            @Override
-            public void run() {
-                try{
-                    //Thread.sleep(10 * 1000);
-                    questionUpdate();
-                }catch(Exception e){
-                }
-            }
-        };
-        ScheduledFuture<?> delayFuture = sch.scheduleWithFixedDelay(periodicalUpdate, 10, 10, TimeUnit.SECONDS);
-        */
        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
        editor = sharedPref.edit();
 
@@ -191,15 +153,6 @@ public class PageFragment extends Fragment {
        return view;
     }
 
-    /*
-    @Override
-
-    public void onResume()
-    {
-        super.onResume();
-        questionUpdate();
-    }
-    */
     private void addListenerOnRatingBar() {
         //listening for changes in rating
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -217,7 +170,6 @@ public class PageFragment extends Fragment {
                 }
                 hasRated = true;
 
-                //testShowRating.setText(errorMessage);
             }
         });
     }
@@ -300,34 +252,4 @@ public class PageFragment extends Fragment {
         inputMethodManager.hideSoftInputFromWindow(
                 activity.getCurrentFocus().getWindowToken(), 0);
     }
-
 }
-
-/*
-    //Anna eksemplkode for detecting top and bottom
-      listview.setOnScrollListener(new OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(AbsListView view, int scrollState) {
-            // TODO Auto-generated method stub
-        }
-        @Override
-        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            if (firstVisibleItem == 0) {
-                // check if we reached the top or bottom of the list
-                View v = listview.getChildAt(0);
-                int offset = (v == null) ? 0 : v.getTop();
-                if (offset == 0) {
-                    // reached the top:
-                    return;
-                }
-            } else if (totalItemCount - visibleItemCount == firstVisibleItem){
-                View v =  listview.getChildAt(totalItemCount-1);
-                int offset = (v == null) ? 0 : v.getTop();
-                if (offset == 0) {
-                    // reached the top:
-                    return;
-                }
-            }
-        }
-    });
-    */

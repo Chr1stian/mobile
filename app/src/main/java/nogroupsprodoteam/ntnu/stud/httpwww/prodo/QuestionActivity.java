@@ -23,6 +23,7 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_activity);
 
+        //gets values from activity that opened this activity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         userID = extras.getInt("UserID");
@@ -31,14 +32,16 @@ public class QuestionActivity extends AppCompatActivity {
         lectureArrayList = (ArrayList<Lecture>) extras.getSerializable("LectureList");
         topicArrayList = (ArrayList<Topic>) extras.getSerializable("TopicList");
 
+        //sets nickname in the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(nickname);
         actionBar.setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        //gets questions to the current user
         questionsWithUserID = Database.getQuestionsWithUserID(userID);
-        setTitle(nickname);
 
+        //creates and fills a recycleview with the users questions
         recQuestions = (RecyclerView) findViewById(R.id.recQuestions);
         recQuestions.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recQuestions.setAdapter(new QuestionsAdapter(questionsWithUserID, courseArrayList, lectureArrayList, topicArrayList, getLayoutInflater()));

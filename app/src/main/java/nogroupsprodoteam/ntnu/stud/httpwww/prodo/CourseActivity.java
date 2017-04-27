@@ -9,13 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,21 +42,24 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
         userID = extras.getInt("UserID");
         nickname = extras.getString("NickName");
 
+        //sets your nickname and the prodo logo in the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(nickname);
         actionBar.setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        //displays the selected course
         TextView lbl_course = (TextView) findViewById(R.id.lbl_course);
         lbl_course.setText(courseArrayList.get(selectedCourseID - 1).getCourseCode() + " - " + courseArrayList.get(selectedCourseID - 1).getCourseName());
 
-
-
+        //creates new arraylist with the lectures that belong to the selected course
         for( Lecture lecture : lectureArrayList) {
             if (lecture.getCourseID().equals(Integer.toString(selectedCourseID))) {
                 lecturesFromSelectedCourse.add(lecture);
             }
         }
+
+        //creates and fills a recycleview with the lectures that belong to the selected course
         recLectures = (RecyclerView) findViewById(R.id.rec_list_lectures);
         recLectures.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         LectureAdapter adapter = new LectureAdapter((ArrayList<Lecture>) lecturesFromSelectedCourse, getLayoutInflater());
@@ -95,7 +92,7 @@ public class CourseActivity extends AppCompatActivity implements LectureAdapter.
         sendMessage(position);
     }
 
-    //Creates icon in actionbar
+    //Creates account icon in actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

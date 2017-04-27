@@ -20,19 +20,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-//TA VEKK LOGGING?
 
 public class MainActivity extends AppCompatActivity {
     EditText txt_name;
-    TextView lbl_name;
-    Button btn_ok;
-    TextView lbl_welcomemsg;
-    TextView lbl_username;
+    TextView lbl_name, lbl_welcomemsg, lbl_username, lbl_proceed;
+    Button btn_ok, btn_changeuser, btn_proceed;
     String username;
     Integer userID = null;
-    Button btn_changeuser;
-    Button btn_proceed;
-    TextView lbl_proceed;
     ImageButton imgbtn_onwards;
 
     ArrayList<Course> courseArrayList;
@@ -52,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //sets the prodo icon in the actionbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Prodo");
         actionBar.setDisplayUseLogoEnabled(true);
@@ -93,12 +88,9 @@ public class MainActivity extends AppCompatActivity {
         run();
     }
 
-    //opens new activity and passes values
+    //send values to and opens SelectionActivity
     public void sendMessage(ArrayList<Course> courseArrayList, ArrayList<Lecture> lectureArrayList, ArrayList<Topic> topicArrayList, ArrayList<Question> questionArrayList) {
         Intent intent = new Intent(this, SelectionActivity.class);
-      //  EditText editText = (EditText) findViewById(R.id.txt_name);
-
-        Log.e("test","switching actvities");
         String nickname = username;
         Bundle extras = new Bundle();
         extras.putString("NickName", nickname);
@@ -189,14 +181,8 @@ public class MainActivity extends AppCompatActivity {
     public void buttonListenerOnChangeUserButton(){
         btn_changeuser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-              //  Log.e("test","before the clear");
-               // Log.e("test","before the clear" + sharedPref.getInt(getString(R.string.userID), 0));
-
                 editor.clear();
                 editor.commit();
-            //    Log.e("test","before the clear");
-              //  Log.e("test","before the clear");
-
                 run();
             }
         });
@@ -208,26 +194,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //checks if nickname is taken
                 username = txt_name.getText().toString();
-                Log.e("test","e det før eller etter validering?");
                 if (Database.checkNickname(username)) {
                     lbl_username.setText(username);
                     makeWelcomeScreenVISIBLE();
                     makeLogInMenuGONE();
-                    Log.e("test","e det før eller etter validering? 2");
                     //inserts it if not taken and goes to next view
                     userID = Database.registerNickname(username);
-                    Log.e("test","foryimeinh");
                     editor.putInt(getString(R.string.userID), userID);
                     editor.putString(getString(R.string.username), username);
                     editor.commit();
-                    Log.e("test", "return from database: " + userID);
-                    Log.e("test", "return from preferences: " + sharedPref.getInt(getString(R.string.userID), 0));
-                    //Hide log in meu¨'
+                    //Hide log in menu
                     lbl_welcomemsg.setText("Welcome");
                     makeWelcomeScreenVISIBLE();
                     makeLogInMenuGONE();
                     sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
-                   // makeOnwardsButtonsVISIBLE();
                 } else {
                     alert11.show();
                 }
@@ -260,27 +240,6 @@ public class MainActivity extends AppCompatActivity {
                 lbl_username.setText(username);
                // sendMessage(courseArrayList,lectureArrayList,topicArrayList);
                 makeOnwardsButtonsVISIBLE();
-
-                Log.e("test", "1 alert");
-               /* new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.e("test","2 alert");
-                        sendMessage(courseArrayList, lectureArrayList, topicArrayList, questionArrayList);
-                    }
-                },1500); */
-
-                Log.e("test", "3 alert");
-/*
-                Log.e("try","sharedPref.getInt(getString(R.string.userID), 0)");
-                Log.e("try","sharedPref.getString(getString(R.string.username), "Error")");
-                Log.e("test", "alertinn d" + userID);
-                Log.e("test", "alertinn d" + username);
-
-
-                */
-
-
             }
         });
         builder1.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -288,7 +247,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
         alert11 = builder1.create();
     }
 
@@ -307,25 +265,15 @@ public class MainActivity extends AppCompatActivity {
 
         lbl_username.setText(username);
 
-
         if (userID == 0) {
             //NO USER ID
             //Show logIn menu
             makeLogInMenuVISIBLE();
-            Log.e("test", "lol");
         } else {
             //WITH USER ID
-            Log.e("test", "allerede innlogga");
             //Showing welcome message and buttons
             makeWelcomeScreenVISIBLE();
             makeWelcomeScreenButtonsVISIBLE();
-          /*  KAN FJERNE?
-            //Database connection for no user idea
-            final ArrayList<Course> courseArrayList = Database.getCourses();
-            final ArrayList<Lecture> lectureArrayList = Database.getLectures();
-            final ArrayList<Topic> topicArrayList = Database.getTopics();
-            */
         }
     }
-
 }
