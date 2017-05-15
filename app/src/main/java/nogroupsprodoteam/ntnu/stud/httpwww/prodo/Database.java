@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import static nogroupsprodoteam.ntnu.stud.httpwww.prodo.R.string.userID;
 
 public class Database {
-    private static String mysqlAddr = "jdbc:mysql://mysql.stud.ntnu.no:3306/prodoteam_db?allowMultiQueries=true";
-    private static String mysqlUser = "chrisnyv_demo";
-    private static String mysqlPass = "rM48DmzH";
+    private static String mysqlAddr = "jdbc:mysql://mysql.stud.ntnu.no:3306/prodoteam_testdb?allowMultiQueries=true";
+    private static String mysqlUser = "jonaseth_tdt4140";
+    private static String mysqlPass = "tdt4140";
 
     public Database (String adr, String user, String password){
         this.mysqlAddr = adr;
